@@ -220,7 +220,7 @@ class PDFViewer {
         const newScale = Math.min(3.0, Math.max(0.5, touchStartScale * scaleChange))
         
         // Only apply smooth zoom if scale changed significantly
-        if (Math.abs(newScale - lastZoomScale) > 0.01) { // Reduced threshold for smoother feedback
+        if (Math.abs(newScale - lastZoomScale) > 0.005) { // Even smaller threshold for ultra-smooth feedback
           this.applySmoothZoom(newScale)
           lastZoomScale = newScale
         }
@@ -232,13 +232,17 @@ class PDFViewer {
         zoomTimeout = setTimeout(() => {
           if (this.isZooming) {
             this.scale = newScale
-            // Add a small delay to reduce flash
+            // Use triple RAF for maximum stability and flash prevention
             requestAnimationFrame(() => {
-              this.finalizeZoom()
-              this.isZooming = false
+              requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                  this.finalizeZoom()
+                  this.isZooming = false
+                })
+              })
             })
           }
-        }, 200) // Slightly longer delay to reduce flashing
+        }, 200) // Slightly shorter delay for better responsiveness
       }
     })
 
@@ -680,19 +684,23 @@ class PDFViewer {
     const container = this.elements.pdfContainer
     
     if (pagesContainer) {
-      // Calculate the center point of the viewport for transform origin
-      const containerRect = container.getBoundingClientRect()
+      // Use center of container as transform origin for consistent behavior
       const scrollTop = container.scrollTop
       const scrollLeft = container.scrollLeft
-      const viewportCenterY = scrollTop + (container.clientHeight / 2)
-      const viewportCenterX = scrollLeft + (container.clientWidth / 2)
+      const containerHeight = container.clientHeight
+      const containerWidth = container.clientWidth
+      
+      // Calculate transform origin relative to the container's scroll position
+      const originY = scrollTop + (containerHeight / 2)
+      const originX = scrollLeft + (containerWidth / 2)
       
       // Apply transform with stable origin
-      pagesContainer.style.transformOrigin = `${viewportCenterX}px ${viewportCenterY}px`
+      pagesContainer.style.transformOrigin = `${originX}px ${originY}px`
       pagesContainer.style.transform = `scale(${scaleRatio})`
-      
-      // Prevent any layout shifts during transform
       pagesContainer.style.willChange = 'transform'
+      
+      // Prevent any layout recalculation during transform
+      pagesContainer.style.backfaceVisibility = 'hidden'
     }
     
     // Update scale display immediately
@@ -703,14 +711,23 @@ class PDFViewer {
   }
 
   finalizeZoom() {
-    // Store current scroll state before any DOM changes
+    // Store current state
     const container = this.elements.pdfContainer
     const pagesContainer = this.elements.pagesContainer
     const currentScrollTop = container.scrollTop
     const currentScrollLeft = container.scrollLeft
     const currentPage = this.getCurrentVisiblePage()
     
-    // Calculate the current center point of the viewport
+    // Extract scale from current transform
+    const currentTransform = pagesContainer.style.transform
+    const scaleMatch = currentTransform.match(/scale\(([^)]+)\)/)
+    const scaleRatio = scaleMatch ? parseFloat(scaleMatch[1]) : 1
+    
+    // Calculate the actual new scale
+    const newScale = this.scale * scaleRatio
+    this.scale = Math.max(0.5, Math.min(3, newScale))
+    
+    // Calculate viewport center position in the transformed coordinate system
     const viewportCenterY = currentScrollTop + (container.clientHeight / 2)
     const viewportCenterX = currentScrollLeft + (container.clientWidth / 2)
     
@@ -720,40 +737,145 @@ class PDFViewer {
     let relativeX = 0.5
     
     if (currentPageWrapper) {
-      const pageRect = currentPageWrapper.getBoundingClientRect()
-      const containerRect = container.getBoundingClientRect()
-      
-      // Calculate relative position within the current page
+      // Calculate relative position within the current page in transformed space
+      const transformedTop = currentPageWrapper.offsetTop
+      const transformedHeight = currentPageWrapper.offsetHeight
       relativeY = Math.max(0, Math.min(1, 
-        (viewportCenterY - currentPageWrapper.offsetTop) / currentPageWrapper.offsetHeight
+        (viewportCenterY - transformedTop) / transformedHeight
       ))
       relativeX = Math.max(0, Math.min(1,
         (viewportCenterX - currentPageWrapper.offsetLeft) / currentPageWrapper.offsetWidth
       ))
     }
     
-    // Temporarily disable scroll events to prevent interference
-    const originalOverflow = container.style.overflow
-    container.style.overflow = 'hidden'
+    // Use a cleaner approach - clear transform and immediately set new layout
+    this.applyInstantZoom(currentPage, relativeY, relativeX)
+  }
+
+  applyInstantZoom(targetPage, relativeY, relativeX) {
+    const container = this.elements.pdfContainer
+    const pagesContainer = this.elements.pagesContainer
     
-    // Clear container transform immediately
-    if (pagesContainer) {
+    // Temporarily disable scrolling and hide scroll indicators
+    container.style.overflow = 'hidden'
+    container.style.scrollbarWidth = 'none'
+    container.style.msOverflowStyle = 'none'
+    
+    // Use the more seamless approach with visibility preservation
+    const currentTransform = pagesContainer.style.transform
+    const hasTransform = currentTransform && currentTransform !== ''
+    
+    if (hasTransform) {
+      // Instead of clearing transform immediately, fade it out while updating layout
+      pagesContainer.style.transition = 'transform 0.1s ease-out'
+      
+      // Start layout update in parallel
+      this.updateAllPageWrappersSynchronously().then(() => {
+        // Clear transform only after layout is ready
+        pagesContainer.style.transform = ''
+        pagesContainer.style.transformOrigin = ''
+        pagesContainer.style.transition = ''
+        pagesContainer.style.willChange = 'auto'
+        pagesContainer.style.backfaceVisibility = ''
+        
+        // Calculate and set new scroll position
+        const targetPageWrapper = document.querySelector(`[data-page-wrapper="${targetPage}"]`)
+        if (targetPageWrapper) {
+          const newPageTop = targetPageWrapper.offsetTop
+          const newPageHeight = targetPageWrapper.offsetHeight
+          const newScrollTop = newPageTop + (relativeY * newPageHeight) - (container.clientHeight / 2)
+          
+          container.scrollTop = Math.max(0, newScrollTop)
+        }
+        
+        // Re-enable scrolling
+        container.style.overflow = 'auto'
+        container.style.scrollbarWidth = ''
+        container.style.msOverflowStyle = ''
+        
+        // Update UI and start rendering
+        this.updatePageInfo()
+        this.queueVisiblePagesForRendering()
+      })
+    } else {
+      // No transform to worry about, proceed normally
       pagesContainer.style.transform = ''
       pagesContainer.style.transformOrigin = ''
       pagesContainer.style.willChange = 'auto'
+      pagesContainer.style.backfaceVisibility = ''
+      
+      // Force immediate reflow
+      pagesContainer.offsetHeight
+      
+      // Update layout and continue
+      this.updateAllPageWrappersSynchronously().then(() => {
+        const targetPageWrapper = document.querySelector(`[data-page-wrapper="${targetPage}"]`)
+        if (targetPageWrapper) {
+          const newPageTop = targetPageWrapper.offsetTop
+          const newPageHeight = targetPageWrapper.offsetHeight
+          const newScrollTop = newPageTop + (relativeY * newPageHeight) - (container.clientHeight / 2)
+          
+          container.scrollTop = Math.max(0, newScrollTop)
+        }
+        
+        container.style.overflow = 'auto'
+        this.updatePageInfo()
+        this.queueVisiblePagesForRendering()
+      })
+    }
+  }
+
+  async updateAllPageWrappersSynchronously() {
+    try {
+      const page = await this.pdf.getPage(1)
+      const viewport = page.getViewport({ scale: this.scale })
+      
+      // Clear existing canvases
+      Object.keys(this.pageCanvases).forEach(pageNum => {
+        this.unloadPage(parseInt(pageNum))
+      })
+      
+      // Update all wrapper dimensions in one go with consistent styling
+      const wrappers = this.elements.pagesContainer.querySelectorAll('[data-page-wrapper]')
+      wrappers.forEach(wrapper => {
+        // Batch all style updates to minimize reflows
+        const newStyles = {
+          height: `${viewport.height}px`,
+          width: `${viewport.width}px`,
+          margin: '10px auto 20px auto',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+          borderRadius: '4px',
+          // Add these to ensure no layout shift
+          minHeight: `${viewport.height}px`,
+          minWidth: `${viewport.width}px`,
+          position: 'relative'
+        }
+        
+        Object.assign(wrapper.style, newStyles)
+      })
+      
+      // Force layout recalculation with a stable base
+      this.elements.pagesContainer.offsetHeight
+      
+    } catch (error) {
+      console.error('Error updating page wrappers:', error)
+    }
+  }
+
+  queueVisiblePagesForRendering() {
+    const visibleRange = this.getVisiblePageRange()
+    const renderBuffer = 2
+    
+    // Queue visible pages for re-rendering
+    const renderStart = Math.max(1, visibleRange.start - renderBuffer)
+    const renderEnd = Math.min(this.totalPages, visibleRange.end + renderBuffer)
+    
+    this.pageRenderQueue = []
+    for (let i = renderStart; i <= renderEnd; i++) {
+      this.pageRenderQueue.push(i)
     }
     
-    // Clear any canvas transforms that might be left over
-    const canvases = Object.values(this.pageCanvases)
-    canvases.forEach(pageData => {
-      if (pageData.canvas) {
-        pageData.canvas.style.transform = ''
-        pageData.canvas.style.transformOrigin = ''
-      }
-    })
-    
-    // Re-render at high quality with new scale and restore position
-    this.updatePageScalesWithPosition(currentPage, relativeY, relativeX, originalOverflow)
+    this.renderNextPageInQueue()
   }
 
   updatePageScalesWithPosition(targetPage, relativeY, relativeX, originalOverflow) {
