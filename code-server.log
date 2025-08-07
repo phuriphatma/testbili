@@ -1,0 +1,502 @@
+[2025-08-07T13:47:22.839Z] info  code-server 4.102.3 6f3d0a7e5ae5f6623e1963e96adabc3287386006
+[2025-08-07T13:47:22.840Z] info  Using user-data-dir /Users/xeno/.local/share/code-server
+[2025-08-07T13:47:22.853Z] info  Using config file /Users/xeno/.config/code-server/config.yaml
+[2025-08-07T13:47:22.853Z] info  HTTP server listening on http://0.0.0.0:8080/
+[2025-08-07T13:47:22.853Z] info    - Authentication is enabled
+[2025-08-07T13:47:22.853Z] info      - Using password from /Users/xeno/.config/code-server/config.yaml
+[2025-08-07T13:47:22.853Z] info    - Not serving HTTPS
+[2025-08-07T13:47:22.853Z] info  Session server listening on /Users/xeno/.local/share/code-server/code-server-ipc.sock
+[20:48:27] 
+
+
+
+
+[20:48:27] Extension host agent started.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[20:48:28] [192.168.1.184][d367e98f][ManagementConnection] New connection established.
+[20:48:29] [192.168.1.184][97790db1][ExtensionHostConnection] New connection established.
+[20:48:29] [192.168.1.184][d367e98f][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[20:48:31] [192.168.1.184][97790db1][ExtensionHostConnection] <19074> Launched Extension Host Process.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[20:48:41] [192.168.1.184][230e6a4b][ManagementConnection] New connection established.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[20:48:41] [192.168.1.184][8b7b42cb][ManagementConnection] New connection established.
+[20:48:41] [192.168.1.184][eb7b706c][ExtensionHostConnection] New connection established.
+[20:48:41] [192.168.1.184][eb7b706c][ExtensionHostConnection] <19076> Launched Extension Host Process.
+[20:48:42] [192.168.1.184][bdbbe8d3][ExtensionHostConnection] New connection established.
+[20:48:42] [192.168.1.184][bdbbe8d3][ExtensionHostConnection] <19078> Launched Extension Host Process.
+[20:48:46] RequestStore#acceptReply was called without receiving a matching request 21
+[20:48:46] RequestStore#acceptReply was called without receiving a matching request 22
+[20:48:46] RequestStore#acceptReply was called without receiving a matching request 23
+[20:48:46] RequestStore#acceptReply was called without receiving a matching request 24
+[20:48:46] RequestStore#acceptReply was called without receiving a matching request 25
+[20:48:46] RequestStore#acceptReply was called without receiving a matching request 26
+[20:48:46] RequestStore#acceptReply was called without receiving a matching request 27
+[20:48:46] RequestStore#acceptReply was called without receiving a matching request 28
+[20:48:46] RequestStore#acceptReply was called without receiving a matching request 29
+[20:48:46] RequestStore#acceptReply was called without receiving a matching request 30
+[20:49:33] [192.168.1.184][230e6a4b][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[20:49:34] [192.168.1.184][eb7b706c][ExtensionHostConnection] <19076> Extension Host Process exited with code: 0, signal: null.
+[20:50:58] Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20) {
+  errno: -54,
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+[20:50:58] [192.168.1.184][8b7b42cb][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+[20:53:41] [192.168.1.184][97790db1][ExtensionHostConnection] <19074> Extension Host Process exited with code: 0, signal: null.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[21:44:14] [192.168.1.184][8b7b42cb][ManagementConnection] Another client has connected, will shorten the wait for reconnection 5m before disposing...
+[21:44:14] [192.168.1.184][920584e6][ManagementConnection] New connection established.
+[21:44:17] [192.168.1.184][4be9db4d][ExtensionHostConnection] New connection established.
+[21:44:17] [192.168.1.184][4be9db4d][ExtensionHostConnection] <25083> Launched Extension Host Process.
+[21:45:03] [192.168.1.184][920584e6][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[21:45:04] [192.168.1.184][4be9db4d][ExtensionHostConnection] <25083> Extension Host Process exited with code: 0, signal: null.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[21:45:04] [192.168.1.184][7675e521][ManagementConnection] New connection established.
+[21:45:04] [192.168.1.184][a0d939de][ExtensionHostConnection] New connection established.
+[21:45:04] [192.168.1.184][a0d939de][ExtensionHostConnection] <28142> Launched Extension Host Process.
+[21:49:15] [192.168.1.184][bdbbe8d3][ExtensionHostConnection] <19078> Extension Host Process exited with code: 0, signal: null.
+[21:49:15] [192.168.1.184][8b7b42cb][ManagementConnection] The reconnection short grace time of 5m has expired, so the connection will be disposed.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[21:49:21] [192.168.1.182][487638ae][ManagementConnection] New connection established.
+[21:49:22] [192.168.1.182][bbababc6][ExtensionHostConnection] New connection established.
+[21:49:22] [192.168.1.182][bbababc6][ExtensionHostConnection] <29584> Launched Extension Host Process.
+[21:49:23] RequestStore#acceptReply was called without receiving a matching request 71
+[21:49:23] RequestStore#acceptReply was called without receiving a matching request 72
+[21:49:23] RequestStore#acceptReply was called without receiving a matching request 73
+[21:49:23] RequestStore#acceptReply was called without receiving a matching request 74
+[21:49:23] RequestStore#acceptReply was called without receiving a matching request 75
+[21:49:23] RequestStore#acceptReply was called without receiving a matching request 76
+[21:49:23] RequestStore#acceptReply was called without receiving a matching request 77
+[21:49:23] RequestStore#acceptReply was called without receiving a matching request 78
+[21:49:23] RequestStore#acceptReply was called without receiving a matching request 79
+[21:49:23] RequestStore#acceptReply was called without receiving a matching request 80
+[21:49:25] RequestStore#acceptReply was called without receiving a matching request 81
+[21:49:25] RequestStore#acceptReply was called without receiving a matching request 82
+[21:49:25] RequestStore#acceptReply was called without receiving a matching request 83
+[21:49:25] RequestStore#acceptReply was called without receiving a matching request 84
+[21:49:25] RequestStore#acceptReply was called without receiving a matching request 85
+[21:49:25] RequestStore#acceptReply was called without receiving a matching request 86
+[21:49:25] RequestStore#acceptReply was called without receiving a matching request 87
+[21:49:25] RequestStore#acceptReply was called without receiving a matching request 88
+[21:49:25] RequestStore#acceptReply was called without receiving a matching request 89
+[21:49:25] RequestStore#acceptReply was called without receiving a matching request 90
+[21:49:49] Installing extension: github.copilot {
+  installGivenVersion: true,
+  isApplicationScoped: false,
+  profileLocation: yr {
+    scheme: 'file',
+    authority: '',
+    path: '/Users/xeno/.local/share/code-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///Users/xeno/.local/share/code-server/extensions/extensions.json',
+    _fsPath: '/Users/xeno/.local/share/code-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.102.3', date: '2025-07-30T19:33:04.260Z' }
+}
+[21:49:51] Extracted extension to file:///Users/xeno/.local/share/code-server/extensions/github.copilot-1.351.1711: github.copilot
+[21:49:51] Renamed to /Users/xeno/.local/share/code-server/extensions/github.copilot-1.351.1711
+[21:49:51] Extension installed successfully: github.copilot file:///Users/xeno/.local/share/code-server/extensions/extensions.json
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 91
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 92
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 93
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 94
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 95
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 96
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 97
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 98
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 99
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 100
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 101
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 102
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 103
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 104
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 105
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 106
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 107
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 108
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 109
+[21:49:51] RequestStore#acceptReply was called without receiving a matching request 110
+[21:50:06] [192.168.1.182][487638ae][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[21:50:07] [192.168.1.182][bbababc6][ExtensionHostConnection] <29584> Extension Host Process exited with code: 0, signal: null.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[21:50:07] [192.168.1.182][17e40019][ManagementConnection] New connection established.
+[21:50:08] [192.168.1.182][fcfee24b][ExtensionHostConnection] New connection established.
+[21:50:08] [192.168.1.182][fcfee24b][ExtensionHostConnection] <29623> Launched Extension Host Process.
+[21:50:09] RequestStore#acceptReply was called without receiving a matching request 111
+[21:50:09] RequestStore#acceptReply was called without receiving a matching request 112
+[21:50:09] RequestStore#acceptReply was called without receiving a matching request 113
+[21:50:09] RequestStore#acceptReply was called without receiving a matching request 114
+[21:50:09] RequestStore#acceptReply was called without receiving a matching request 115
+[21:50:09] RequestStore#acceptReply was called without receiving a matching request 116
+[21:50:09] RequestStore#acceptReply was called without receiving a matching request 117
+[21:50:09] RequestStore#acceptReply was called without receiving a matching request 118
+[21:50:09] RequestStore#acceptReply was called without receiving a matching request 119
+[21:50:09] RequestStore#acceptReply was called without receiving a matching request 120
+[21:51:32] [192.168.1.182][17e40019][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[21:51:32] [192.168.1.182][fcfee24b][ExtensionHostConnection] <29623> Extension Host Process exited with code: 0, signal: null.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+[21:51:32] [192.168.1.182][8b6f3a77][ManagementConnection] New connection established.
+[21:51:33] [192.168.1.182][b611da3c][ExtensionHostConnection] New connection established.
+[21:51:33] [192.168.1.182][b611da3c][ExtensionHostConnection] <29739> Launched Extension Host Process.
+[21:51:34] RequestStore#acceptReply was called without receiving a matching request 121
+[21:51:34] RequestStore#acceptReply was called without receiving a matching request 122
+[21:51:34] RequestStore#acceptReply was called without receiving a matching request 123
+[21:51:34] RequestStore#acceptReply was called without receiving a matching request 124
+[21:51:34] RequestStore#acceptReply was called without receiving a matching request 125
+[21:51:34] RequestStore#acceptReply was called without receiving a matching request 126
+[21:51:34] RequestStore#acceptReply was called without receiving a matching request 127
+[21:51:34] RequestStore#acceptReply was called without receiving a matching request 128
+[21:51:34] RequestStore#acceptReply was called without receiving a matching request 129
+[21:51:34] RequestStore#acceptReply was called without receiving a matching request 130
+[21:52:09] [192.168.1.184][7675e521][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[21:52:09] [192.168.1.184][a0d939de][ExtensionHostConnection] <28142> Extension Host Process exited with code: 0, signal: null.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[21:52:09] [192.168.1.184][28bb8384][ManagementConnection] New connection established.
+[21:52:10] [192.168.1.184][68eda27e][ExtensionHostConnection] New connection established.
+[21:52:10] [192.168.1.184][68eda27e][ExtensionHostConnection] <29825> Launched Extension Host Process.
+[21:52:11] RequestStore#acceptReply was called without receiving a matching request 131
+[21:52:11] RequestStore#acceptReply was called without receiving a matching request 132
+[21:52:11] RequestStore#acceptReply was called without receiving a matching request 133
+[21:52:11] RequestStore#acceptReply was called without receiving a matching request 134
+[21:52:11] RequestStore#acceptReply was called without receiving a matching request 135
+[21:52:11] RequestStore#acceptReply was called without receiving a matching request 136
+[21:52:11] RequestStore#acceptReply was called without receiving a matching request 137
+[21:52:11] RequestStore#acceptReply was called without receiving a matching request 138
+[21:52:11] RequestStore#acceptReply was called without receiving a matching request 139
+[21:52:11] RequestStore#acceptReply was called without receiving a matching request 140
+[21:52:12] RequestStore#acceptReply was called without receiving a matching request 141
+[21:52:12] RequestStore#acceptReply was called without receiving a matching request 142
+[21:52:12] RequestStore#acceptReply was called without receiving a matching request 143
+[21:52:12] RequestStore#acceptReply was called without receiving a matching request 144
+[21:52:12] RequestStore#acceptReply was called without receiving a matching request 145
+[21:52:12] RequestStore#acceptReply was called without receiving a matching request 146
+[21:52:12] RequestStore#acceptReply was called without receiving a matching request 147
+[21:52:12] RequestStore#acceptReply was called without receiving a matching request 148
+[21:52:12] RequestStore#acceptReply was called without receiving a matching request 149
+[21:52:12] RequestStore#acceptReply was called without receiving a matching request 150
+[21:52:14] RequestStore#acceptReply was called without receiving a matching request 151
+[21:52:14] RequestStore#acceptReply was called without receiving a matching request 152
+[21:52:14] RequestStore#acceptReply was called without receiving a matching request 153
+[21:52:14] RequestStore#acceptReply was called without receiving a matching request 154
+[21:52:14] RequestStore#acceptReply was called without receiving a matching request 155
+[21:52:14] RequestStore#acceptReply was called without receiving a matching request 156
+[21:52:14] RequestStore#acceptReply was called without receiving a matching request 157
+[21:52:14] RequestStore#acceptReply was called without receiving a matching request 158
+[21:52:14] RequestStore#acceptReply was called without receiving a matching request 159
+[21:52:14] RequestStore#acceptReply was called without receiving a matching request 160
+[21:53:29] Installing extension: github.copilot {
+  installGivenVersion: true,
+  pinned: true,
+  isApplicationScoped: false,
+  profileLocation: yr {
+    scheme: 'file',
+    authority: '',
+    path: '/Users/xeno/.local/share/code-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///Users/xeno/.local/share/code-server/extensions/extensions.json',
+    _fsPath: '/Users/xeno/.local/share/code-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.102.3', date: '2025-07-30T19:33:04.260Z' }
+}
+[21:53:30] Deleted existing extension from disk github.copilot /Users/xeno/.local/share/code-server/extensions/github.copilot-1.351.1711
+[21:53:30] Extracted extension to file:///Users/xeno/.local/share/code-server/extensions/github.copilot-1.351.1711: github.copilot
+[21:53:30] Renamed to /Users/xeno/.local/share/code-server/extensions/github.copilot-1.351.1711
+[21:53:30] Extension installed successfully: github.copilot file:///Users/xeno/.local/share/code-server/extensions/extensions.json
+[21:56:05] Installing extension: github.copilot {
+  installGivenVersion: true,
+  isApplicationScoped: false,
+  profileLocation: yr {
+    scheme: 'file',
+    authority: '',
+    path: '/Users/xeno/.local/share/code-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///Users/xeno/.local/share/code-server/extensions/extensions.json',
+    _fsPath: '/Users/xeno/.local/share/code-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.102.3', date: '2025-07-30T19:33:04.260Z' }
+}
+[21:56:06] Extracted extension to file:///Users/xeno/.local/share/code-server/extensions/github.copilot-1.350.0: github.copilot
+[21:56:06] Renamed to /Users/xeno/.local/share/code-server/extensions/github.copilot-1.350.0
+[21:56:06] Marked extension as removed github.copilot-1.351.1711
+[21:56:06] Extension installed successfully: github.copilot file:///Users/xeno/.local/share/code-server/extensions/extensions.json
+[21:56:09] [192.168.1.184][28bb8384][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[21:56:09] [192.168.1.184][68eda27e][ExtensionHostConnection] <29825> Extension Host Process exited with code: 0, signal: null.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[21:56:10] [192.168.1.184][7bf7b3b0][ManagementConnection] New connection established.
+[21:56:10] [192.168.1.184][58ffbdaa][ExtensionHostConnection] New connection established.
+[21:56:10] [192.168.1.184][58ffbdaa][ExtensionHostConnection] <30064> Launched Extension Host Process.
+[21:56:11] RequestStore#acceptReply was called without receiving a matching request 161
+[21:56:11] RequestStore#acceptReply was called without receiving a matching request 162
+[21:56:11] RequestStore#acceptReply was called without receiving a matching request 163
+[21:56:11] RequestStore#acceptReply was called without receiving a matching request 164
+[21:56:11] RequestStore#acceptReply was called without receiving a matching request 165
+[21:56:11] RequestStore#acceptReply was called without receiving a matching request 166
+[21:56:11] RequestStore#acceptReply was called without receiving a matching request 167
+[21:56:11] RequestStore#acceptReply was called without receiving a matching request 168
+[21:56:11] RequestStore#acceptReply was called without receiving a matching request 169
+[21:56:11] RequestStore#acceptReply was called without receiving a matching request 170
+[21:56:12] RequestStore#acceptReply was called without receiving a matching request 171
+[21:56:12] RequestStore#acceptReply was called without receiving a matching request 172
+[21:56:12] RequestStore#acceptReply was called without receiving a matching request 173
+[21:56:12] RequestStore#acceptReply was called without receiving a matching request 174
+[21:56:12] RequestStore#acceptReply was called without receiving a matching request 175
+[21:56:12] RequestStore#acceptReply was called without receiving a matching request 176
+[21:56:12] RequestStore#acceptReply was called without receiving a matching request 177
+[21:56:12] RequestStore#acceptReply was called without receiving a matching request 178
+[21:56:12] RequestStore#acceptReply was called without receiving a matching request 179
+[21:56:12] RequestStore#acceptReply was called without receiving a matching request 180
+[21:56:39] [192.168.1.182][8b6f3a77][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[21:56:39] [192.168.1.182][b611da3c][ExtensionHostConnection] <29739> Extension Host Process exited with code: 0, signal: null.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[21:56:40] [192.168.1.182][c3b55bb2][ManagementConnection] New connection established.
+[21:56:40] [192.168.1.182][e5ea68aa][ExtensionHostConnection] New connection established.
+[21:56:40] [192.168.1.182][e5ea68aa][ExtensionHostConnection] <30096> Launched Extension Host Process.
+[21:56:41] RequestStore#acceptReply was called without receiving a matching request 181
+[21:56:41] RequestStore#acceptReply was called without receiving a matching request 182
+[21:56:41] RequestStore#acceptReply was called without receiving a matching request 183
+[21:56:41] RequestStore#acceptReply was called without receiving a matching request 184
+[21:56:41] RequestStore#acceptReply was called without receiving a matching request 185
+[21:56:41] RequestStore#acceptReply was called without receiving a matching request 186
+[21:56:41] RequestStore#acceptReply was called without receiving a matching request 187
+[21:56:41] RequestStore#acceptReply was called without receiving a matching request 188
+[21:56:41] RequestStore#acceptReply was called without receiving a matching request 189
+[21:56:41] RequestStore#acceptReply was called without receiving a matching request 190
+[21:56:42] RequestStore#acceptReply was called without receiving a matching request 191
+[21:56:42] RequestStore#acceptReply was called without receiving a matching request 192
+[21:56:42] RequestStore#acceptReply was called without receiving a matching request 193
+[21:56:42] RequestStore#acceptReply was called without receiving a matching request 194
+[21:56:42] RequestStore#acceptReply was called without receiving a matching request 195
+[21:56:42] RequestStore#acceptReply was called without receiving a matching request 196
+[21:56:42] RequestStore#acceptReply was called without receiving a matching request 197
+[21:56:42] RequestStore#acceptReply was called without receiving a matching request 198
+[21:56:42] RequestStore#acceptReply was called without receiving a matching request 199
+[21:56:42] RequestStore#acceptReply was called without receiving a matching request 200
+[21:58:41] Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20) {
+  errno: -54,
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+[21:58:41] [192.168.1.184][7bf7b3b0][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+[22:04:05] [192.168.1.184][7bf7b3b0][ManagementConnection] Another client has connected, will shorten the wait for reconnection 5m before disposing...
+[22:04:05] [192.168.1.184][7bf7b3b0][ManagementConnection] The client has reconnected.
+[22:04:05] [192.168.1.184][58ffbdaa][ExtensionHostConnection] The client has reconnected.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+[22:04:09] [192.168.1.184][d267e5fb][ManagementConnection] New connection established.
+[22:04:10] [192.168.1.184][b17253c7][ExtensionHostConnection] New connection established.
+[22:04:10] [192.168.1.184][b17253c7][ExtensionHostConnection] <32142> Launched Extension Host Process.
+[22:04:12] [192.168.1.184][d267e5fb][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[22:04:13] [192.168.1.184][e140f684][ManagementConnection] New connection established.
+[22:04:13] [192.168.1.184][e48e4bac][ExtensionHostConnection] New connection established.
+[22:04:13] [192.168.1.184][e48e4bac][ExtensionHostConnection] <32154> Launched Extension Host Process.
+[22:04:15] [192.168.1.184][b17253c7][ExtensionHostConnection] <32142> Extension Host Process exited with code: 0, signal: null.
+[22:04:20] #8: https://open-vsx.org/vscode/gallery/vscode/bradlc/vscode-tailwindcss/latest - error GET AggregateError [ECONNREFUSED]: 
+[22:04:20] #9: https://open-vsx.org/vscode/gallery/vscode/ms-vscode/vscode-typescript-next/latest - error GET AggregateError [ECONNREFUSED]: 
+[22:04:22] [192.168.1.184][e140f684][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[22:04:22] [192.168.1.184][e48e4bac][ExtensionHostConnection] <32154> Extension Host Process exited with code: 0, signal: null.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[22:04:22] [192.168.1.184][b4d15610][ManagementConnection] New connection established.
+[22:04:23] [192.168.1.184][a07ffeeb][ExtensionHostConnection] New connection established.
+[22:04:23] [192.168.1.184][a07ffeeb][ExtensionHostConnection] <32180> Launched Extension Host Process.
+[22:04:27] [192.168.1.184][b4d15610][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[22:04:27] #10: https://open-vsx.org/vscode/gallery/vscode/github/copilot/latest - error GET Canceled
+[22:04:27] #11: https://open-vsx.org/vscode/gallery/vscode/ms-vscode/vscode-typescript-next/latest - error GET Canceled
+[22:04:27] #12: https://open-vsx.org/vscode/gallery/vscode/esbenp/prettier-vscode/latest - error GET Canceled
+[22:04:27] #13: https://open-vsx.org/vscode/gallery/vscode/bradlc/vscode-tailwindcss/latest - error GET Canceled
+[22:04:27] [192.168.1.184][a07ffeeb][ExtensionHostConnection] <32180> Extension Host Process exited with code: 0, signal: null.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[22:04:28] [192.168.1.184][c6748253][ManagementConnection] New connection established.
+File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+[22:04:29] [192.168.1.184][b7586f89][ExtensionHostConnection] New connection established.
+[22:04:29] [192.168.1.184][b7586f89][ExtensionHostConnection] <32197> Launched Extension Host Process.
+[22:04:34] [192.168.1.184][c6748253][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[22:04:34] #14: https://open-vsx.org/vscode/gallery/vscode/esbenp/prettier-vscode/latest - error GET Canceled
+[22:04:34] #15: https://open-vsx.org/vscode/gallery/vscode/ms-vscode/vscode-typescript-next/latest - error GET Canceled
+[22:04:34] [192.168.1.184][b7586f89][ExtensionHostConnection] <32197> Extension Host Process exited with code: 0, signal: null.
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 201
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 202
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 203
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 204
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 205
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 206
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 207
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 208
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 209
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 210
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 211
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 212
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 213
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 214
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 215
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 216
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 217
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 218
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 219
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 220
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 221
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 222
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 223
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 224
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 225
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 226
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 227
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 228
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 229
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 230
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 231
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 232
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 233
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 234
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 235
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 236
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 237
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 238
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 239
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 240
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 241
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 242
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 243
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 244
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 245
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 246
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 247
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 248
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 249
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 250
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 251
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 252
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 253
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 254
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 255
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 256
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 257
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 258
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 259
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 260
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 261
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 262
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 263
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 264
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 265
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 266
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 267
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 268
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 269
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 270
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 271
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 272
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 273
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 274
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 275
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 276
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 277
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 278
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 279
+[22:04:42] RequestStore#acceptReply was called without receiving a matching request 280
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 201
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 202
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 203
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 204
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 205
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 206
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 207
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 208
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 209
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 210
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 211
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 212
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 213
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 214
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 215
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 216
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 217
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 218
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 219
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 220
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 221
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 222
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 223
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 224
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 225
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 226
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 227
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 228
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 229
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 230
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 231
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 232
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 233
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 234
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 235
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 236
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 237
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 238
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 239
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 240
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 241
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 242
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 243
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 244
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 245
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 246
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 247
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 248
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 249
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 250
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 251
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 252
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 253
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 254
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 255
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 256
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 257
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 258
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 259
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 260
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 261
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 262
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 263
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 264
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 265
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 266
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 267
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 268
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 269
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 270
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 271
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 272
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 273
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 274
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 275
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 276
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 277
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 278
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 279
+[22:07:14] RequestStore#acceptReply was called without receiving a matching request 280
+[22:10:34] Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20) {
+  errno: -54,
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+[22:10:34] [192.168.1.184][7bf7b3b0][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...

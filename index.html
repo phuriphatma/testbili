@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF Viewer App</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>PDF Viewer</h1>
+        <div class="controls">
+          <input type="file" id="pdfInput" accept=".pdf,application/pdf" style="display: none;" multiple="false" />
+          <button id="importBtn" class="btn primary">Import PDF</button>
+          <button id="debugBtn" class="btn secondary" style="margin-left: 10px;">Debug Test</button>
+          <div id="bookmarkControls" style="display: none;">
+            <button id="bookmarkBtn" class="btn secondary">Bookmark Page (Cmd+D)</button>
+            <select id="bookmarkList" class="bookmark-list">
+              <option value="">Select Bookmark</option>
+            </select>
+          </div>
+        </div>
+      </header>
+      
+      <main>
+        <div id="pdfViewer" class="pdf-viewer">
+          <div id="welcomeMessage" class="welcome">
+            <h2>Welcome to PDF Viewer</h2>
+            <p>Click "Import PDF" to start viewing your documents</p>
+            <p class="features">
+              • Touch scroll and pinch zoom on iPad<br>
+              • Press Cmd+D to bookmark pages<br>
+              • Custom bookmark names<br>
+              • Continuous scrolling
+            </p>
+          </div>
+          <div id="pdfContainer" class="pdf-container" style="display: none;">
+            <div id="pagesContainer" class="pages-container"></div>
+          </div>
+          <div id="pageInfo" class="page-info" style="display: none;">
+            Page <span id="currentPage">1</span> of <span id="totalPages">1</span> • <span id="scaleDisplay">130%</span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Bookmark Modal -->
+    <div id="bookmarkModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <h3>Bookmark Page <span id="bookmarkPageNum"></span></h3>
+        <input type="text" id="bookmarkName" placeholder="Enter bookmark name" />
+        <div class="modal-buttons">
+          <button id="saveBookmark" class="btn primary">Save</button>
+          <button id="cancelBookmark" class="btn secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

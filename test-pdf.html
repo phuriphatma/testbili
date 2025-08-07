@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF.js Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .btn { padding: 10px 20px; margin: 10px; border: none; background: #4f46e5; color: white; border-radius: 5px; cursor: pointer; }
+        #status { margin: 20px 0; padding: 10px; background: #f0f0f0; border-radius: 5px; }
+        #canvas { border: 1px solid #ccc; max-width: 100%; }
+    </style>
+</head>
+<body>
+    <h1>PDF.js Simple Test</h1>
+    <input type="file" id="fileInput" accept=".pdf" />
+    <button class="btn" onclick="testPDFjs()">Test PDF.js</button>
+    <div id="status">Ready for testing...</div>
+    <canvas id="canvas"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.js"></script>
+    <script>
+        // Configure PDF.js to use local worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
+
+        function updateStatus(message) {
+            document.getElementById('status').textContent = message;
+            console.log(message);
+        }
+
+        function testPDFjs() {
+            updateStatus('Testing PDF.js...');
+            console.log('PDF.js version:', pdfjsLib.version);
+            console.log('Worker source:', pdfjsLib.GlobalWorkerOptions.workerSrc);
+            updateStatus('PDF.js is loaded. Version: ' + pdfjsLib.version);
+        }
+
+        document.getElementById('fileInput').addEventListener('change', async function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            updateStatus('Loading file: ' + file.name);
+            
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                updateStatus('File read. Size: ' + arrayBuffer.byteLength + ' bytes');
+                
+                const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+                updateStatus('PDF loaded! Pages: ' + pdf.numPages);
+                
+                // Render first page
+                const page = await pdf.getPage(1);
+                const viewport = page.getViewport({ scale: 1.0 });
+                
+                const canvas = document.getElementById('canvas');
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                
+                await page.render(renderContext).promise;
+                updateStatus('PDF rendered successfully!');
+                
+            } catch (error) {
+                updateStatus('Error: ' + error.message);
+                console.error('Detailed error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
