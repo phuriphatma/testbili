@@ -500,3 +500,27 @@ File not found: /opt/homebrew/Cellar/code-server/4.102.3/libexec/lib/vscode/node
   syscall: 'read'
 }
 [22:10:34] [192.168.1.184][7bf7b3b0][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+[22:47:05] [192.168.1.182][c3b55bb2][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+[22:48:53] No ptyHost heartbeat after 6 seconds
+[23:13:37] No ptyHost heartbeat after 6 seconds
+[23:43:48] No ptyHost heartbeat after 6 seconds
+[00:56:13] No ptyHost heartbeat after 6 seconds
+[01:02:16] No ptyHost heartbeat after 6 seconds
+[01:27:56] No ptyHost heartbeat after 6 seconds
+[03:43:24] No ptyHost heartbeat after 6 seconds
+[05:24:43] No ptyHost heartbeat after 6 seconds
+[05:29:40] No ptyHost heartbeat after 6 seconds
+[07:43:41] No ptyHost heartbeat after 6 seconds
+[09:15:38] No ptyHost heartbeat after 6 seconds
+[09:47:13] No ptyHost heartbeat after 6 seconds
+[10:03:01] No ptyHost heartbeat after 6 seconds
+[10:32:26] No ptyHost heartbeat after 6 seconds
+[10:48:14] No ptyHost heartbeat after 6 seconds
+[11:04:02] No ptyHost heartbeat after 6 seconds
+[11:33:26] No ptyHost heartbeat after 6 seconds
+[12:50:14] No ptyHost heartbeat after 6 seconds
+[13:06:02] No ptyHost heartbeat after 6 seconds
+[13:21:49] No ptyHost heartbeat after 6 seconds
+[14:07:02] No ptyHost heartbeat after 6 seconds
+[15:00:09] [192.168.1.184][7bf7b3b0][ManagementConnection] The reconnection grace time of 3h has expired, so the connection will be disposed.
+[15:00:29] [192.168.1.184][58ffbdaa][ExtensionHostConnection] <30064> Extension Host Process exited with code: 0, signal: null.

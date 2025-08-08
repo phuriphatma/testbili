@@ -1,5 +1,6 @@
 import './style.css'
 import * as pdfjsLib from 'pdfjs-dist'
+import { pdfBookmarkEmbedder } from './pdf-bookmark-embedder.js'
 
 // Configure PDF.js worker - use local worker file
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js'
@@ -14,6 +15,8 @@ class PDFViewer {
     this.bookmarks = JSON.parse(localStorage.getItem('pdfBookmarks') || '[]')
     this.currentPdfName = ''
     this.isZooming = false // Track zoom state to prevent scroll interference
+    this.currentPdfBuffer = null // Store original PDF buffer for embedding
+    this.embeddedBookmarks = [] // Bookmarks extracted from PDF
     
     // Progressive rendering
     this.pageCanvases = {}
@@ -45,6 +48,7 @@ class PDFViewer {
       bookmarkControls: document.getElementById('bookmarkControls'),
       bookmarkBtn: document.getElementById('bookmarkBtn'),
       bookmarkList: document.getElementById('bookmarkList'),
+      downloadEmbeddedBtn: document.getElementById('downloadEmbeddedBtn'),
       bookmarkModal: document.getElementById('bookmarkModal'),
       bookmarkName: document.getElementById('bookmarkName'),
       bookmarkPageNum: document.getElementById('bookmarkPageNum'),
@@ -146,6 +150,11 @@ class PDFViewer {
       if (e.target === this.elements.bookmarkModal) {
         this.hideBookmarkModal()
       }
+    })
+
+    // Download embedded PDF button
+    this.elements.downloadEmbeddedBtn.addEventListener('click', () => {
+      this.downloadPDFWithAllBookmarks()
     })
   }
 
@@ -329,6 +338,19 @@ class PDFViewer {
       
       if (arrayBuffer.byteLength === 0) {
         throw new Error('File is empty')
+      }
+      
+      // Store the original PDF buffer for bookmark embedding
+      this.currentPdfBuffer = arrayBuffer.slice() // Create a copy
+      
+      // Extract embedded bookmarks from PDF
+      console.log('Extracting embedded bookmarks...')
+      try {
+        this.embeddedBookmarks = await pdfBookmarkEmbedder.extractBookmarks(arrayBuffer)
+        console.log('Found embedded bookmarks:', this.embeddedBookmarks.length)
+      } catch (error) {
+        console.warn('Could not extract embedded bookmarks:', error)
+        this.embeddedBookmarks = []
       }
       
       console.log('Creating PDF document...')
@@ -1085,7 +1107,7 @@ class PDFViewer {
     this.elements.bookmarkModal.style.display = 'none'
   }
 
-  saveBookmark() {
+  async saveBookmark() {
     const name = this.elements.bookmarkName.value.trim()
     if (!name) {
       alert('Please enter a bookmark name')
@@ -1098,14 +1120,21 @@ class PDFViewer {
       this.bookmarks[this.currentPdfName] = {}
     }
     
-    this.bookmarks[this.currentPdfName][bookmarkKey] = {
+    const newBookmark = {
       name: name,
       page: this.currentPage,
       scale: this.scale,
       timestamp: new Date().toISOString()
     }
+    
+    this.bookmarks[this.currentPdfName][bookmarkKey] = newBookmark
 
+    // Save to localStorage
     localStorage.setItem('pdfBookmarks', JSON.stringify(this.bookmarks))
+    
+    // Also try to embed into PDF file
+    await this.embedBookmarkToPDF(newBookmark)
+    
     this.loadBookmarks()
     this.hideBookmarkModal()
     
@@ -1117,21 +1146,192 @@ class PDFViewer {
     }, 2000)
   }
 
+  async embedBookmarkToPDF(newBookmark) {
+    if (!this.currentPdfBuffer) {
+      console.warn('No PDF buffer available for embedding')
+      return
+    }
+
+    try {
+      // Get all current bookmarks (embedded + local)
+      const allBookmarks = [...this.embeddedBookmarks]
+      
+      // Add local storage bookmarks for this PDF
+      if (this.bookmarks[this.currentPdfName]) {
+        Object.values(this.bookmarks[this.currentPdfName]).forEach(bookmark => {
+          allBookmarks.push(bookmark)
+        })
+      }
+
+      console.log('Embedding bookmarks into PDF:', allBookmarks.length)
+      
+      // Show embedding progress
+      const originalText = this.elements.bookmarkBtn.textContent
+      this.elements.bookmarkBtn.textContent = '💾 Embedding...'
+      
+      // Embed bookmarks into PDF
+      const modifiedPdfBytes = await pdfBookmarkEmbedder.embedBookmarks(
+        this.currentPdfBuffer, 
+        allBookmarks
+      )
+      
+      // Offer to download the modified PDF
+      this.offerDownloadEmbeddedPDF(modifiedPdfBytes)
+      
+    } catch (error) {
+      console.error('Failed to embed bookmark into PDF:', error)
+      // Continue anyway - bookmark is still saved locally
+    }
+  }
+
+  offerDownloadEmbeddedPDF(pdfBytes) {
+    // Create download link for the PDF with embedded bookmarks
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' })
+    const url = URL.createObjectURL(blob)
+    
+    // Show option to download
+    const download = confirm(
+      'Bookmark saved! Would you like to download a copy of the PDF with all bookmarks embedded?\n\n' +
+      'This will include all your bookmarks directly in the PDF file.'
+    )
+    
+    if (download) {
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `${this.currentPdfName}_with_bookmarks.pdf`
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      
+      // Show success message
+      setTimeout(() => {
+        alert('PDF with embedded bookmarks has been downloaded!')
+      }, 500)
+    }
+    
+    // Clean up the URL
+    setTimeout(() => URL.revokeObjectURL(url), 5000)
+  }
+
+  async downloadPDFWithAllBookmarks() {
+    if (!this.currentPdfBuffer) {
+      alert('No PDF loaded. Please import a PDF first.')
+      return
+    }
+
+    try {
+      // Show loading state
+      const originalText = this.elements.downloadEmbeddedBtn.textContent
+      this.elements.downloadEmbeddedBtn.textContent = '⏳ Processing...'
+      this.elements.downloadEmbeddedBtn.disabled = true
+      
+      // Get all current bookmarks (embedded + local)
+      const allBookmarks = [...this.embeddedBookmarks]
+      
+      // Add local storage bookmarks for this PDF
+      if (this.bookmarks[this.currentPdfName]) {
+        Object.values(this.bookmarks[this.currentPdfName]).forEach(bookmark => {
+          allBookmarks.push(bookmark)
+        })
+      }
+
+      if (allBookmarks.length === 0) {
+        alert('No bookmarks to embed. Please create some bookmarks first.')
+        this.elements.downloadEmbeddedBtn.textContent = originalText
+        this.elements.downloadEmbeddedBtn.disabled = false
+        return
+      }
+
+      console.log('Creating PDF with embedded bookmarks:', allBookmarks.length)
+      
+      // Embed bookmarks into PDF
+      const modifiedPdfBytes = await pdfBookmarkEmbedder.embedBookmarks(
+        this.currentPdfBuffer, 
+        allBookmarks
+      )
+      
+      // Create download
+      const blob = new Blob([modifiedPdfBytes], { type: 'application/pdf' })
+      const url = URL.createObjectURL(blob)
+      
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `${this.currentPdfName}_with_bookmarks.pdf`
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      
+      // Clean up
+      setTimeout(() => URL.revokeObjectURL(url), 5000)
+      
+      // Show success
+      this.elements.downloadEmbeddedBtn.textContent = '✅ Downloaded!'
+      setTimeout(() => {
+        this.elements.downloadEmbeddedBtn.textContent = originalText
+        this.elements.downloadEmbeddedBtn.disabled = false
+      }, 2000)
+      
+      console.log('PDF with embedded bookmarks downloaded successfully')
+      
+    } catch (error) {
+      console.error('Failed to download PDF with bookmarks:', error)
+      alert('Failed to create PDF with embedded bookmarks. Please try again.')
+      
+      // Reset button
+      this.elements.downloadEmbeddedBtn.textContent = '📥 Download with Bookmarks'
+      this.elements.downloadEmbeddedBtn.disabled = false
+    }
+  }
+
   loadBookmarks() {
     const select = this.elements.bookmarkList
     select.innerHTML = '<option value="">Select Bookmark</option>'
     
+    // Load embedded bookmarks first (from PDF file itself)
+    if (this.embeddedBookmarks && this.embeddedBookmarks.length > 0) {
+      // Add a separator for embedded bookmarks
+      const embeddedHeader = document.createElement('optgroup')
+      embeddedHeader.label = '📄 Embedded in PDF'
+      select.appendChild(embeddedHeader)
+      
+      this.embeddedBookmarks.forEach((bookmark, index) => {
+        const option = document.createElement('option')
+        option.value = `embedded_${index}`
+        option.textContent = bookmark.name
+        embeddedHeader.appendChild(option)
+      })
+    }
+    
+    // Load local storage bookmarks
     if (this.currentPdfName && this.bookmarks[this.currentPdfName]) {
+      // Add a separator for local bookmarks
+      const localHeader = document.createElement('optgroup')
+      localHeader.label = '💾 Local Bookmarks'
+      select.appendChild(localHeader)
+      
       Object.entries(this.bookmarks[this.currentPdfName]).forEach(([key, bookmark]) => {
         const option = document.createElement('option')
         option.value = key
         option.textContent = bookmark.name
-        select.appendChild(option)
+        localHeader.appendChild(option)
       })
     }
   }
 
   goToBookmark(bookmarkKey) {
+    // Handle embedded bookmarks
+    if (bookmarkKey.startsWith('embedded_')) {
+      const index = parseInt(bookmarkKey.replace('embedded_', ''))
+      if (this.embeddedBookmarks && this.embeddedBookmarks[index]) {
+        const bookmark = this.embeddedBookmarks[index]
+        this.scale = bookmark.scale || 1
+        this.updateZoom()
+        this.goToPage(bookmark.page)
+      }
+      return
+    }
+    
+    // Handle local storage bookmarks
     if (this.currentPdfName && this.bookmarks[this.currentPdfName] && this.bookmarks[this.currentPdfName][bookmarkKey]) {
       const bookmark = this.bookmarks[this.currentPdfName][bookmarkKey]
       this.scale = bookmark.scale || 1
