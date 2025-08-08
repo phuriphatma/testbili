@@ -1,4 +1,16 @@
-# iPad PDF Viewer
+# iPad P## ✨ Features
+
+- **📱 Touch-Optimized**: Designed specifically for iPad with responsive touch controls
+- **🔍 Smooth Pinch Zoom**: Real-time pinch zoom (0.5x - 3x) with no flash or spacing issues
+- **📜 Continuous Scroll**: Seamless page-by-page scrolling with memory-efficient rendering
+- **🔖 Embedded Bookmarks**: Save bookmarks directly into PDF files with native PDF support
+- **💾 Smart Bookmark System**: 
+  - Automatically extract bookmarks from existing PDFs
+  - Cmd+D shortcut for quick bookmarking
+  - Download PDFs with all bookmarks embedded
+  - Visual separation of embedded vs local bookmarks
+- **⚡ High Performance**: Progressive rendering with memory management for large PDFs
+- **🎨 Modern UI**: Clean, minimal interface with touch-friendly controlsr
 
 A modern, touch-optimized PDF viewer built with Vite and vanilla JavaScript, specifically designed for iPad usage with smooth pinch zoom and continuous scrolling.
 
@@ -47,17 +59,25 @@ npm run preview
 ## 🎮 Usage
 
 1. **Import PDF**: Click "Choose PDF File" or drag & drop a PDF file
+   - Automatically extracts any existing bookmarks from the PDF
+   - Displays embedded and local bookmarks separately
 2. **Navigate**: 
    - Scroll up/down to navigate pages
    - Use page navigation controls
    - Jump to specific page numbers
+   - Select bookmarks from dropdown (📄 Embedded in PDF / 💾 Local Bookmarks)
 3. **Zoom**: 
    - Pinch to zoom in/out (iPad)
    - Use zoom controls (desktop)
-4. **Bookmark**: 
-   - Press `Cmd+D` (Mac) or `Ctrl+D` (Windows/Linux)
-   - Enter custom bookmark name
-   - Access bookmarks from the bookmark panel
+4. **Bookmark System**: 
+   - **Quick Bookmark**: Press `Cmd+D` (Mac) or `Ctrl+D` (Windows/Linux)
+   - **Custom Names**: Enter meaningful bookmark names
+   - **Auto-Embed**: Option to download PDF with bookmark embedded
+   - **Download All**: Use "📥 Download with Bookmarks" for PDF with all bookmarks
+5. **Embedded Bookmarks**:
+   - Bookmarks are saved directly into the PDF file
+   - Compatible with other PDF readers
+   - Creates both custom metadata and native PDF outline entries
 
 ## 🛠️ Technical Architecture
 
@@ -65,10 +85,17 @@ npm run preview
 - **Frontend**: Vanilla JavaScript (ES6+)
 - **Build Tool**: Vite 5.4.8
 - **PDF Engine**: PDF.js 4.7.76
-- **Storage**: localStorage for bookmarks
+- **PDF Manipulation**: pdf-lib 1.17.1
+- **Storage**: localStorage + PDF embedded metadata
 - **Styling**: Modern CSS with CSS Grid/Flexbox
 
 ### Key Features Implementation
+
+#### PDF Bookmark Embedding
+- **Native PDF Bookmarks**: Creates standard PDF outline entries compatible with all readers
+- **Custom Metadata**: Stores rich bookmark data in PDF custom metadata fields
+- **Automatic Extraction**: Reads bookmarks from existing PDFs on import
+- **Download Integration**: One-click download of PDF with all bookmarks embedded
 
 #### Memory-Efficient Rendering
 - Progressive page rendering with render queue
@@ -89,17 +116,18 @@ npm run preview
 ## 📁 Project Structure
 
 ```
-├── index.html          # Main HTML structure
-├── main.js            # Core application logic
-├── style.css          # Responsive styling
-├── vite.config.js     # Vite configuration
-├── package.json       # Dependencies and scripts
-└── public/
-    ├── pdf.worker.min.js  # PDF.js worker
-    └── vite.svg          # App icon
-```
+├── index.html                    # Main HTML structure
+├── main.js                      # Core application logic
+├── pdf-bookmark-embedder.js    # PDF bookmark manipulation module
+├── style.css                   # Responsive styling
+├── vite.config.js              # Vite configuration
+├── package.json                # Dependencies and scripts
+├── public/
+│   ├── pdf.worker.min.js       # PDF.js worker
+│   └── vite.svg                # App icon
 └── .github/
-    └── copilot-instructions.md
+    └── copilot-instructions.md # Workspace-specific Copilot instructions
+```
 ```
 
 ## 🎮 Usage
