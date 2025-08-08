@@ -352,8 +352,13 @@ class PDFViewer {
       // Extract embedded bookmarks from PDF
       console.log('Extracting embedded bookmarks...')
       try {
-        this.embeddedBookmarks = await pdfBookmarkEmbedder.extractBookmarks(arrayBuffer)
-        console.log('Found embedded bookmarks:', this.embeddedBookmarks.length)
+        if (pdfBookmarkEmbedder.isLoaded) {
+          this.embeddedBookmarks = await pdfBookmarkEmbedder.extractBookmarks(arrayBuffer)
+          console.log('Found embedded bookmarks:', this.embeddedBookmarks.length)
+        } else {
+          console.warn('PDF bookmark embedder not available - skipping bookmark extraction')
+          this.embeddedBookmarks = []
+        }
       } catch (error) {
         console.warn('Could not extract embedded bookmarks:', error)
         this.embeddedBookmarks = []
@@ -1158,6 +1163,11 @@ class PDFViewer {
       return
     }
 
+    if (!pdfBookmarkEmbedder.isLoaded) {
+      console.warn('PDF bookmark embedder not available - bookmark saved locally only')
+      return
+    }
+
     try {
       // Get all current bookmarks (embedded + local)
       const allBookmarks = [...this.embeddedBookmarks]
@@ -1222,6 +1232,11 @@ class PDFViewer {
   async downloadPDFWithAllBookmarks() {
     if (!this.currentPdfBuffer) {
       alert('No PDF loaded. Please import a PDF first.')
+      return
+    }
+
+    if (!pdfBookmarkEmbedder.isLoaded) {
+      alert('PDF bookmark embedding is not available. Please check that pdf-lib is properly installed.')
       return
     }
 

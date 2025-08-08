@@ -1,23 +1,18 @@
 // PDF Bookmark Embedder - Handles embedding and extracting bookmarks from PDF files
 // Uses pdf-lib for PDF manipulation and maintains compatibility with PDF.js viewer
 
+import * as pdfLib from 'pdf-lib'
+
 export class PDFBookmarkEmbedder {
   constructor() {
-    this.pdfLib = null
-    this.isLoaded = false
+    this.pdfLib = pdfLib
+    this.isLoaded = true
+    console.log('PDF bookmark embedder initialized with static import')
   }
 
   async initialize() {
-    try {
-      // Dynamically import pdf-lib
-      this.pdfLib = await import('pdf-lib')
-      this.isLoaded = true
-      console.log('PDF bookmark embedder initialized')
-      return true
-    } catch (error) {
-      console.error('Failed to load pdf-lib:', error)
-      return false
-    }
+    // No longer needed with static import, but keeping for compatibility
+    return this.isLoaded
   }
 
   /**

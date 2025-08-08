@@ -13,7 +13,7 @@ export default defineConfig({
     assetsDir: 'assets'
   },
   optimizeDeps: {
-    include: ['pdfjs-dist']
+    include: ['pdfjs-dist', 'pdf-lib']
   },
   worker: {
     format: 'es'
