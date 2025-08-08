@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "network": "./network-helper.sh",
+    "network-url": "echo \"http://$(ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print $2}' | head -1):5173\""
   },
   "devDependencies": {
     "vite": "^6.0.0"

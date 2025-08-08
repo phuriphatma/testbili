@@ -49,12 +49,18 @@ class PDFViewer {
       bookmarkBtn: document.getElementById('bookmarkBtn'),
       bookmarkList: document.getElementById('bookmarkList'),
       downloadEmbeddedBtn: document.getElementById('downloadEmbeddedBtn'),
+      networkInfo: document.getElementById('networkInfo'),
+      networkUrl: document.getElementById('networkUrl'),
+      copyUrlBtn: document.getElementById('copyUrlBtn'),
       bookmarkModal: document.getElementById('bookmarkModal'),
       bookmarkName: document.getElementById('bookmarkName'),
       bookmarkPageNum: document.getElementById('bookmarkPageNum'),
       saveBookmark: document.getElementById('saveBookmark'),
       cancelBookmark: document.getElementById('cancelBookmark')
     }
+    
+    // Setup network info display
+    this.setupNetworkInfo()
     
     // Debug: Check if critical elements exist
     console.log('Import button found:', !!this.elements.importBtn)
@@ -1337,6 +1343,60 @@ class PDFViewer {
       this.scale = bookmark.scale || 1
       this.updateZoom()
       this.goToPage(bookmark.page)
+    }
+  }
+
+  setupNetworkInfo() {
+    // Show network info for iPad access
+    if (this.elements.networkInfo && this.elements.networkUrl && this.elements.copyUrlBtn) {
+      // Get the current URL and replace localhost with the actual network IP
+      const currentUrl = window.location.href
+      const networkUrl = this.getNetworkUrl(currentUrl)
+      
+      if (networkUrl !== currentUrl) {
+        // Show network info only if we can provide a different (network) URL
+        this.elements.networkUrl.textContent = networkUrl
+        this.elements.networkInfo.style.display = 'flex'
+        
+        // Setup copy button
+        this.elements.copyUrlBtn.addEventListener('click', () => {
+          this.copyToClipboard(networkUrl)
+        })
+      }
+    }
+  }
+
+  getNetworkUrl(currentUrl) {
+    // Try to determine network IP from current URL
+    const url = new URL(currentUrl)
+    
+    // If already on localhost, try to get network IP
+    if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') {
+      // In development, we can try to determine the network IP
+      // This is a best guess - the actual IP might be different
+      return currentUrl.replace(/localhost|127\.0\.0\.1/, '192.168.1.182')
+    }
+    
+    return currentUrl
+  }
+
+  async copyToClipboard(text) {
+    try {
+      await navigator.clipboard.writeText(text)
+      
+      // Show feedback
+      const originalText = this.elements.copyUrlBtn.textContent
+      this.elements.copyUrlBtn.textContent = '✅'
+      setTimeout(() => {
+        this.elements.copyUrlBtn.textContent = originalText
+      }, 2000)
+      
+      console.log('URL copied to clipboard:', text)
+    } catch (error) {
+      console.error('Failed to copy URL:', error)
+      
+      // Fallback: show the URL in an alert
+      alert(`Copy this URL for iPad access:\n${text}`)
     }
   }
 

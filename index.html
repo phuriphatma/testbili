@@ -14,6 +14,10 @@
           <input type="file" id="pdfInput" accept=".pdf,application/pdf" style="display: none;" multiple="false" />
           <button id="importBtn" class="btn primary">Import PDF</button>
           <button id="debugBtn" class="btn secondary" style="margin-left: 10px;">Debug Test</button>
+          <div id="networkInfo" class="network-info" style="display: none;">
+            <span class="network-text">📱 iPad Access: <code id="networkUrl">Loading...</code></span>
+            <button id="copyUrlBtn" class="btn-copy" title="Copy URL">📋</button>
+          </div>
           <div id="bookmarkControls" style="display: none;">
             <button id="bookmarkBtn" class="btn secondary">Bookmark Page (Cmd+D)</button>
             <select id="bookmarkList" class="bookmark-list">
