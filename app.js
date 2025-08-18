@@ -18,6 +18,50 @@
     return pts.sort((a,b)=>a.x-b.x);
   }
 
+  // Data persistence functions
+  function saveFormData(){
+    try {
+      const formData = {
+        ga: $('#ga').value,
+        ageHours: $('#ageHours').value,
+        bili: $('#bili').value,
+        risk: ($('input[name="risk"]:checked')||{}).value,
+        dob: $('#dob').value,
+        dom: $('#dom').value,
+        datasetKind: ($('#datasetKind')||{}).value,
+        verifyInput: ($('#verifyInput')||{}).value
+      };
+      localStorage.setItem('pedBiliFormData', JSON.stringify(formData));
+    } catch(e) {
+      // Ignore localStorage errors (e.g., quota exceeded, private browsing)
+    }
+  }
+
+  function loadFormData(){
+    try {
+      const saved = localStorage.getItem('pedBiliFormData');
+      if(!saved) return;
+      
+      const formData = JSON.parse(saved);
+      
+      // Restore form values
+      if(formData.ga) $('#ga').value = formData.ga;
+      if(formData.ageHours) $('#ageHours').value = formData.ageHours;
+      if(formData.bili) $('#bili').value = formData.bili;
+      if(formData.risk) {
+        const riskRadio = $(`input[name="risk"][value="${formData.risk}"]`);
+        if(riskRadio) riskRadio.checked = true;
+      }
+      if(formData.dob) $('#dob').value = formData.dob;
+      if(formData.dom) $('#dom').value = formData.dom;
+      if(formData.datasetKind && $('#datasetKind')) $('#datasetKind').value = formData.datasetKind;
+      if(formData.verifyInput && $('#verifyInput')) $('#verifyInput').value = formData.verifyInput;
+      
+    } catch(e) {
+      // Ignore errors in loading/parsing saved data
+    }
+  }
+
   function buildDatasets(){
     const ga = Number($('#ga').value);
     const ageHoursList = parseList($('#ageHours').value);
@@ -322,16 +366,32 @@
 
   // Events
   // Live updates on change
-  $('#resetBtn').addEventListener('click', () => { setTimeout(()=>{ $('#summary').textContent=''; computeSummary(); }, 0); });
-  $('#calcAgeBtn').addEventListener('click', () => { calcAge(); computeSummary(); });
-  // Recompute on every keystroke as well as change
-  $$('#controls input').forEach(el => el.addEventListener('input', ()=>{ computeSummary(); }));
-  $$('#controls input, #controls select').forEach(el => el.addEventListener('change', ()=>{ computeSummary(); }));
+  $('#resetBtn').addEventListener('click', () => { 
+    setTimeout(()=>{ 
+      $('#summary').textContent=''; 
+      // Clear saved data when reset is clicked
+      try { localStorage.removeItem('pedBiliFormData'); } catch(e) {}
+      computeSummary(); 
+    }, 0); 
+  });
+  $('#calcAgeBtn').addEventListener('click', () => { calcAge(); computeSummary(); saveFormData(); });
+  
+  // Recompute on every keystroke as well as change, and save data
+  $$('#controls input').forEach(el => el.addEventListener('input', ()=>{ computeSummary(); saveFormData(); }));
+  $$('#controls input, #controls select').forEach(el => el.addEventListener('change', ()=>{ computeSummary(); saveFormData(); }));
+  
+  // Also save data when age calculator fields change
+  if($('#dob')) $('#dob').addEventListener('change', saveFormData);
+  if($('#dom')) $('#dom').addEventListener('change', saveFormData);
+  if($('#datasetKind')) $('#datasetKind').addEventListener('change', saveFormData);
+  if($('#verifyInput')) $('#verifyInput').addEventListener('input', saveFormData);
+  
   $('#verifyBtn').addEventListener('click', verifyAgainstDataset);
   $('#exportBtn').addEventListener('click', exportDatasetJSON);
   $('#convertBtn').addEventListener('click', convertToJsRows);
   $('#copyConvertBtn').addEventListener('click', copyConverted);
 
-  // Initial render
+  // Load saved data and initial render
+  loadFormData();
   computeSummary();
 })();
