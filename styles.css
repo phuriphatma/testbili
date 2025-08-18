@@ -19,4 +19,7 @@ button[type="reset"]{background:#64748b}
 button[type="reset"]:hover{background:#475569}
 .chart-wrap{background:#fff;border:1px dashed #cbd5e1;border-radius:8px;padding:.5rem}
 .summary{margin-top:.5rem;color:#334155}
+.primary-threshold{font-size:2.2rem;line-height:1.1;font-weight:800;color:#111827;margin:.25rem 0}
+.secondary-meta{font-size:1rem;color:#475569;margin:.1rem 0}
+.muted{color:#64748b}
 .small{font-size:.9rem}
