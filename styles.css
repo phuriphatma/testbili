@@ -1,0 +1,22 @@
+*{box-sizing:border-box}html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#0f172a;background:#f8fafc}
+header{padding:1rem 1.25rem;border-bottom:1px solid #e2e8f0;background:#fff}
+header h1{margin:0 0 .25rem}
+.disclaimer{color:#475569}
+.disclaimer.small{font-size:.9rem}
+main{max-width:1000px;margin:1rem auto;padding:0 1rem 3rem;display:grid;gap:1rem}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+label{display:flex;flex-direction:column;gap:.35rem}
+label>span{font-weight:600}
+input[type="text"],input[type="datetime-local"],select{padding:.5rem .6rem;border:1px solid #cbd5e1;border-radius:6px;font-size:1rem}
+fieldset{border:1px solid #cbd5e1;border-radius:6px;padding:.5rem .75rem}
+fieldset.inline{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+legend{padding:0 .25rem;font-weight:600}
+.actions{display:flex;gap:.5rem;align-items:center;margin-top:.5rem}
+button{background:#0ea5e9;color:white;border:none;border-radius:6px;padding:.55rem .9rem;font-weight:600;cursor:pointer}
+button:hover{background:#0284c7}
+button[type="reset"]{background:#64748b}
+button[type="reset"]:hover{background:#475569}
+.chart-wrap{background:#fff;border:1px dashed #cbd5e1;border-radius:8px;padding:.5rem}
+.summary{margin-top:.5rem;color:#334155}
+.small{font-size:.9rem}

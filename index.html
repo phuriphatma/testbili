@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neonatal Age & Bilirubin (Demo)</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- jsPDF for PDF export -->
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Age and Bilirubin (Demo)</h1>
+    <p class="disclaimer">For demonstration and education only. Do not use for clinical decisions. Thresholds are illustrative, not guideline-accurate.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Inputs</h2>
+      <form id="controls" onsubmit="return false;">
+        <div class="grid">
+          <label>
+            <span>Gestation at birth</span>
+            <select id="ga">
+              <option value="35">35 weeks</option>
+              <option value="36">36 weeks</option>
+              <option value="37">37 weeks</option>
+              <option value="38">38 weeks</option>
+              <option value="39">39 weeks</option>
+              <option value="40">40+ weeks</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Age (hours)</span>
+            <input id="ageHours" type="text" placeholder="e.g., 24 or 12,24,48" />
+            <small>1–336 hours; comma-separated list allowed</small>
+          </label>
+
+          <label>
+            <span>Bilirubin (mg/dL)</span>
+            <input id="bili" type="text" placeholder="optional; e.g., 10 or 8,9,11" />
+            <small>Optional; comma-separated list allowed</small>
+          </label>
+
+          <fieldset class="inline">
+            <legend>Neurotoxicity risks</legend>
+            <label><input type="radio" name="risk" value="no_risk" checked /> No risk factors</label>
+            <label><input type="radio" name="risk" value="any_risk" /> ANY risk factors</label>
+            <label><input type="radio" name="risk" value="both" /> Show both</label>
+          </fieldset>
+
+          <fieldset class="inline">
+            <legend>Plot scale</legend>
+            <label><input type="radio" name="scale" value="auto" checked /> Automatic</label>
+            <label><input type="radio" name="scale" value="full" /> Full-sized</label>
+          </fieldset>
+
+          <fieldset class="inline">
+            <legend>Plot choice</legend>
+            <label><input type="radio" name="plotChoice" value="custom" checked /> Custom (demo)</label>
+            <label><input type="radio" name="plotChoice" value="original" /> Original publication</label>
+            <small>Original curves not included in demo</small>
+          </fieldset>
+        </div>
+
+        <div class="actions">
+          <button id="plotBtn" type="button">Plot</button>
+          <button id="resetBtn" type="reset">Reset form</button>
+          <button id="pdfBtn" type="button">Download PDF</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Results</h2>
+      <div id="summary" class="summary"></div>
+    </section>
+
+    <section class="card">
+      <h2>Optional age calculator</h2>
+      <div class="grid">
+        <label>
+          <span>Date of birth</span>
+          <input id="dob" type="datetime-local" />
+        </label>
+        <label>
+          <span>Date of measurement</span>
+          <input id="dom" type="datetime-local" />
+        </label>
+        <div class="actions">
+          <button id="calcAgeBtn" type="button">Calculate age</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Chart</h2>
+      <div class="chart-wrap">
+        <canvas id="chart" height="360"></canvas>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Verify AAP table (optional)</h2>
+      <p class="small">Paste 15 rows × 24 values (360 numbers) for the selected GA (ANY risk, exchange thresholds). Non-numeric text will be ignored.</p>
+      <div class="grid">
+        <label>
+          <span>Paste table values</span>
+          <textarea id="verifyInput" rows="6" style="width:100%;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"></textarea>
+        </label>
+      </div>
+      <div class="actions">
+        <button id="verifyBtn" type="button">Verify against JS dataset</button>
+        <button id="exportBtn" type="button">Export JS dataset JSON</button>
+      </div>
+      <div id="verifyOutput" class="summary"></div>
+    </section>
+
+    <section class="card">
+      <h2>Usage notes</h2>
+      <ul>
+        <li>Leave bilirubin blank to view thresholds only.</li>
+        <li>Enter comma-separated ages and bilirubin to plot trends.</li>
+        <li>Recommendation is based on the last age/value pair provided.</li>
+      </ul>
+      <details>
+        <summary>Neurotoxicity risk factors (examples)</summary>
+        <ul>
+          <li>Albumin &lt; 3 g/dL</li>
+          <li>Isoimmune hemolytic disease</li>
+          <li>G6PD deficiency or other hemolytic conditions</li>
+          <li>Sepsis or clinical instability in the prior 24 hours</li>
+          <li>Prematurity is accounted for by gestational-age selection</li>
+        </ul>
+      </details>
+      <p class="disclaimer small">References: AAP 2022 Hyperbilirubinemia guideline. This demo does not reproduce the original curves; values shown are illustrative.</p>
+    </section>
+  </main>
+
+  <script src="thresholds_demo.js"></script>
+  <script src="thresholds_aap_anyrisk_exchange.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
