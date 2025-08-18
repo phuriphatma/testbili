@@ -1,7 +1,7 @@
 /* Main app logic: parses inputs, renders Chart.js curves, overlays values, shows recommendations, PDF export */
 (function(){
-  const $ = sel => document.querySelector(sel);
-  const $$ = sel => Array.from(document.querySelectorAll(sel));
+  const $ = function(sel){ return document.querySelector(sel); };
+  const $$ = function(sel){ return Array.prototype.slice.call(document.querySelectorAll(sel)); };
 
   const ctx = $('#chart');
   let chart;
@@ -72,7 +72,7 @@
     const bili = biliList[biliList.length-1];
 
   let rec = DemoThresholds.recommendation({ age, bili, ga, risk });
-  const hasBili = Number.isFinite(bili);
+  const hasBili = (typeof bili === 'number' && isFinite(bili));
 
   // If any-risk selected, show AAP exchange for that GA as authoritative overlay
   let aapEx = null;
@@ -173,8 +173,8 @@
   function parseAAPDayRows(text){
     // Parses lines like: "0 13.1 13.3 ... 16.0" (25 numbers) and ignores the leading day index.
     // Also ignores a header line "0 1 2 ... 23".
-    const lines = text.split(/\r?\n/);
-    const rows = Array.from({length: 15}, () => null);
+  const lines = text.split(/\r?\n/);
+  const rows = []; for(var i=0;i<15;i++){ rows[i] = null; }
     for(const line of lines){
       const nums = (line.match(/[-+]?[0-9]*\.?[0-9]+/g) || []).map(Number).filter(n => Number.isFinite(n));
       if(!nums.length) continue;
@@ -186,21 +186,26 @@
         if(vals.length === 24) rows[day] = vals;
       } else if(nums.length === 24){
         // Some tables omit the day label; fill the first available day slot
-        const day = rows.findIndex(r => r === null);
+        var day = -1; for(var di=0; di<rows.length; di++){ if(rows[di] === null){ day = di; break; } }
         if(day !== -1) rows[day] = nums;
       }
     }
     // Flatten if all rows present
-    if(rows.every(r => Array.isArray(r) && r.length === 24)){
-      return rows.flat();
+    var ok = true; for(var ri=0; ri<rows.length; ri++){ if(!Array.isArray(rows[ri]) || rows[ri].length !== 24){ ok = false; break; } }
+    if(ok){
+      var out = [];
+      for(var rr=0; rr<rows.length; rr++){
+        for(var hh=0; hh<rows[rr].length; hh++) out.push(rows[rr][hh]);
+      }
+      return out;
     }
     return [];
   }
 
   function convertToJsRows(){
     const raw = $('#verifyInput').value;
-    const lines = raw.split(/\r?\n/);
-    const rows = Array.from({length: 15}, () => null);
+  const lines = raw.split(/\r?\n/);
+  const rows = []; for(var i=0;i<15;i++){ rows[i] = null; }
     for(const line of lines){
       const nums = (line.match(/[-+]?[0-9]*\.?[0-9]+/g) || []).map(Number).filter(n => Number.isFinite(n));
       if(!nums.length) continue;
@@ -210,7 +215,7 @@
         const vals = nums.slice(1);
         if(vals.length === 24) rows[day] = vals;
       } else if(nums.length === 24){
-        const day = rows.findIndex(r => r === null);
+  var day = -1; for(var di=0; di<rows.length; di++){ if(rows[di] === null){ day = di; break; } }
         if(day !== -1) rows[day] = nums;
       }
     }
@@ -223,7 +228,7 @@
     }
     // Determine last filled day and plateau value
     let lastFilled = -1;
-    for(let d=14; d>=0; d--){ if(rows[d]) { lastFilled = d; break; } }
+  for(let d=14; d>=0; d--){ if(rows[d]) { lastFilled = d; break; } }
     if(lastFilled === -1){
       $('#convertOutput').value = 'No rows detected. Paste day-labeled rows or lines of 24 values.';
       return;
