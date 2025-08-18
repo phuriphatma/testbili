@@ -67,7 +67,7 @@
   else if(bili >= pt) rec = { level: 'Phototherapy threshold', detail: 'Initiate phototherapy and monitor.' };
     else rec = { level: 'Below treatment threshold', detail: 'Routine monitoring and follow-up.' };
 
-    return { ...rec, pt: Number(pt.toFixed(1)), ex: Number(ex.toFixed(1)) };
+  return Object.assign({}, rec, { pt: Number(pt.toFixed(1)), ex: Number(ex.toFixed(1)) });
   }
 
   global.DemoThresholds = { getCurves, interpolateY, recommendation, HOURS_MAX };
