@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Neonatal Age & Bilirubin (Demo)</title>
   <link rel="stylesheet" href="styles.css" />
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <!-- jsPDF for PDF export -->
-  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  
 </head>
 <body>
   <header>
-    <h1>Age and Bilirubin (Demo)</h1>
-    <p class="disclaimer">For demonstration and education only. Do not use for clinical decisions. Thresholds are illustrative, not guideline-accurate.</p>
+    <h1>AAP 2022 Hyperbilirubinemia Management Guidelines</h1>
+    <p class="disclaimer">For demonstration only, inspired by https://peditools.org/bili2022/</p>
   </header>
 
   <main>
@@ -47,29 +44,16 @@
 
           <fieldset class="inline">
             <legend>Neurotoxicity risks</legend>
-            <label><input type="radio" name="risk" value="no_risk" checked /> No risk factors</label>
-            <label><input type="radio" name="risk" value="any_risk" /> ANY risk factors</label>
+            <label><input type="radio" name="risk" value="no_risk" /> No risk factors</label>
+            <label><input type="radio" name="risk" value="any_risk" checked /> ANY risk factors</label>
             <label><input type="radio" name="risk" value="both" /> Show both</label>
           </fieldset>
 
-          <fieldset class="inline">
-            <legend>Plot scale</legend>
-            <label><input type="radio" name="scale" value="auto" checked /> Automatic</label>
-            <label><input type="radio" name="scale" value="full" /> Full-sized</label>
-          </fieldset>
-
-          <fieldset class="inline">
-            <legend>Plot choice</legend>
-            <label><input type="radio" name="plotChoice" value="custom" checked /> Custom (demo)</label>
-            <label><input type="radio" name="plotChoice" value="original" /> Original publication</label>
-            <small>Original curves not included in demo</small>
-          </fieldset>
+          
         </div>
 
         <div class="actions">
-          <button id="plotBtn" type="button">Plot</button>
           <button id="resetBtn" type="reset">Reset form</button>
-          <button id="pdfBtn" type="button">Download PDF</button>
         </div>
       </form>
     </section>
@@ -96,17 +80,19 @@
       </div>
     </section>
 
-    <section class="card">
-      <h2>Chart</h2>
-      <div class="chart-wrap">
-        <canvas id="chart" height="360"></canvas>
-      </div>
-    </section>
+    
 
     <section class="card">
       <h2>Verify AAP table (optional)</h2>
-      <p class="small">Paste 15 rows × 24 values (360 numbers) for the selected GA (ANY risk, exchange thresholds). Non-numeric text will be ignored.</p>
+      <p class="small">Paste 15 rows × 24 values (360 numbers) for the selected GA. Choose Exchange (Table 4) or Phototherapy (Table 2). Non-numeric text will be ignored.</p>
       <div class="grid">
+        <label>
+          <span>Dataset</span>
+          <select id="datasetKind">
+            <option value="exchange" selected>Exchange (AAP Table 4)</option>
+            <option value="phototherapy">Phototherapy (AAP Table 2)</option>
+          </select>
+        </label>
         <label>
           <span>Paste table values</span>
           <textarea id="verifyInput" rows="6" style="width:100%;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"></textarea>
@@ -117,6 +103,18 @@
         <button id="exportBtn" type="button">Export JS dataset JSON</button>
       </div>
       <div id="verifyOutput" class="summary"></div>
+
+      <hr/>
+      <h3>Convert pasted table to JS dataset rows</h3>
+      <p class="small">Converts the day/hour table into array-of-arrays rows, ready to paste inside the dataset file.</p>
+      <div class="actions">
+        <button id="convertBtn" type="button">Convert to JS rows</button>
+        <button id="copyConvertBtn" type="button">Copy output</button>
+      </div>
+      <label>
+        <span class="small">JS rows output</span>
+        <textarea id="convertOutput" rows="8" readonly style="width:100%;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"></textarea>
+      </label>
     </section>
 
     <section class="card">
@@ -142,6 +140,7 @@
 
   <script src="thresholds_demo.js"></script>
   <script src="thresholds_aap_anyrisk_exchange.js"></script>
+  <script src="thresholds_aap_anyrisk_phototherapy.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
