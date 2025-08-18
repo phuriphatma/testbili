@@ -23,7 +23,6 @@
     const ageHoursList = parseList($('#ageHours').value);
     const biliList = parseList($('#bili').value);
     const risk = ($('input[name="risk"]:checked')||{}).value || 'no_risk';
-    const scale = ($('input[name="scale"]:checked')||{}).value || 'auto';
 
     const sets = DemoThresholds.getCurves(ga, risk);
     const datasets = [];
@@ -48,33 +47,24 @@
       datasets.push({ label: 'Exchange (AAP any risk)', data: exAAP, borderColor: '#ef4444', pointRadius: 0, tension: 0 });
     }
 
+    // AAP phototherapy overlay (any risk) if dataset present
+    if(risk !== 'no_risk' && window.AAP_AnyRisk_Phototherapy){
+      const ptAAP = window.AAP_AnyRisk_Phototherapy.tables[ga] || window.AAP_AnyRisk_Phototherapy.tables[38] || [];
+      if(ptAAP.length){
+        datasets.push({ label: 'Phototherapy (AAP any risk)', data: ptAAP, borderColor: '#22c55e', pointRadius: 0, tension: 0, borderDash: [6,4] });
+      }
+    }
+
     // Plot user provided points
     if(ageHoursList.length && biliList.length){
       const points = zipToPoints(ageHoursList, biliList);
       datasets.push({ label: 'Patient bilirubin', data: points, showLine: false, borderColor: '#0ea5e9', backgroundColor: '#0ea5e9', pointRadius: 4 });
     }
 
-    const xMax = scale === 'full' ? DemoThresholds.HOURS_MAX : Math.max(72, ...datasets.flatMap(d => (d.data||[])).map(p => p.x||0), ...(ageHoursList||[]));
-    const yMax = scale === 'full' ? 24 : Math.max(12, ...datasets.flatMap(d => (d.data||[])).map(p => p.y||0), ...(biliList||[]));
-
-    return { datasets, xMax, yMax, ga, risk, ageHoursList, biliList };
+  return { datasets, ga, risk, ageHoursList, biliList };
   }
 
-  function drawChart(){
-    const {datasets, xMax, yMax} = buildDatasets();
-    const data = { datasets };
-    const opt = {
-      responsive: true,
-      animation: false,
-      scales: {
-        x: { type: 'linear', title: { display: true, text: 'Age (hours)' }, min: 0, max: xMax },
-        y: { title: { display: true, text: 'TSB (mg/dL)' }, min: 0, max: yMax }
-      },
-      plugins: { legend: { position: 'top' }, tooltip: { intersect: false, mode: 'index' } }
-    };
-    if(chart) chart.destroy();
-    chart = new Chart(ctx, { type: 'line', data, options: opt });
-  }
+  // Chart removed; keep datasets builder for parsing only.
 
   function computeSummary(){
     const { ga, risk, ageHoursList, biliList } = buildDatasets();
@@ -82,10 +72,11 @@
     const bili = biliList[biliList.length-1];
 
   let rec = DemoThresholds.recommendation({ age, bili, ga, risk });
+  const hasBili = Number.isFinite(bili);
 
-    // If any-risk selected, show AAP exchange for that GA as authoritative overlay
-    let aapEx = null;
-    let aapExactText = '';
+  // If any-risk selected, show AAP exchange for that GA as authoritative overlay
+  let aapEx = null;
+  let aapExactText = '';
     if(risk !== 'no_risk' && window.AAP_AnyRisk_Exchange){
       if(typeof age === 'number' && !isNaN(age)){
         const exact = window.AAP_AnyRisk_Exchange.getExchangeExact(ga, age);
@@ -95,61 +86,64 @@
       if(ageHoursList.length){
         const rows = ageHoursList.map((h, i) => {
           const ex = window.AAP_AnyRisk_Exchange.getExchangeExact(ga, h);
+          const pt = (window.AAP_AnyRisk_Phototherapy && window.AAP_AnyRisk_Phototherapy.getPhotoExact) ? window.AAP_AnyRisk_Phototherapy.getPhotoExact(ga, h) : null;
+          const ptV = pt && typeof pt.value === 'number' ? Number(pt.value.toFixed(1)) : null;
+          const exV = Number(ex.value.toFixed(1));
+          const both = (ptV!=null) ? `(${ptV}, ${exV})` : `${exV}`;
           const tbili = (typeof biliList[i] === 'number' && !isNaN(biliList[i])) ? biliList[i] : null;
           const cmp = tbili!=null ? (tbili >= ex.value ? '≥' : '<') : '';
-          const tbiliTxt = tbili!=null ? ` · TSB ${tbili} (${cmp} ${ex.value})` : '';
-          return `h${ex.hour}: ${ex.value}${tbiliTxt}`;
+          const tbiliTxt = tbili!=null ? ` · TSB ${tbili} (${cmp} ${exV})` : '';
+          return `h${ex.hour}: ${both}${tbiliTxt}`;
         });
-        aapExactText = `AAP any-risk exchange values: ${rows.join('; ')}`;
+        aapExactText = `AAP any-risk thresholds (photo, exchange) by hour: ${rows.join('; ')}`;
       }
     }
 
-  const parts = [];
-  parts.push(`<strong>GA:</strong> ${ga} wks`);
-  if(typeof age !== 'undefined') parts.push(`<strong>Age:</strong> ${age} h`);
-  if(typeof bili !== 'undefined') parts.push(`<strong>TSB:</strong> ${bili} mg/dL`);
-  parts.push(`<strong>Risk:</strong> ${risk.replace('_',' ')}`);
+    // Phototherapy exact, if table present
+  let aapPt = null;
+    if(risk !== 'no_risk' && window.AAP_AnyRisk_Phototherapy){
+      if(typeof age === 'number' && !isNaN(age)){
+        const exactPt = window.AAP_AnyRisk_Phototherapy.getPhotoExact(ga, age);
+        if(exactPt && typeof exactPt.value === 'number') aapPt = Number(exactPt.value.toFixed(1));
+      }
+    }
 
-  const lines = [];
-  if(aapEx != null) lines.push(`AAP any-risk exchange at this age/GA (exact table hour): <strong>${aapEx} mg/dL</strong>`);
-  if(aapExactText) lines.push(aapExactText);
-  lines.push(parts.join(' · '));
-    // Prefer AAP exchange determination if applicable
-    if(aapEx != null && typeof bili === 'number' && !isNaN(bili)){
+  // Build primary threshold header
+  let headerHtml = '';
+  if(aapPt != null && aapEx != null){
+    headerHtml = `<div class="primary-threshold">(${aapPt}, ${aapEx}) mg/dL</div>`;
+  } else if(aapPt != null){
+    headerHtml = `<div class="primary-threshold">${aapPt} mg/dL</div>`;
+  } else if(aapEx != null){
+    headerHtml = `<div class="primary-threshold">${aapEx} mg/dL</div>`;
+  }
+
+  // Meta line under header
+  const metaParts = [];
+  metaParts.push(`<strong>GA:</strong> ${ga} wks`);
+  if(typeof age !== 'undefined') metaParts.push(`<strong>Age:</strong> ${age} h`);
+  const riskText = risk.replace('_',' ');
+  metaParts.push(`<span class="muted"><strong>Risk:</strong> ${riskText}</span>`);
+  const metaHtml = `<div class="secondary-meta">${metaParts.join(' · ')}</div>`;
+
+  const details = [];
+  if(hasBili) details.push(`<div><strong>Patient TSB:</strong> ${bili} mg/dL</div>`);
+  // Prefer AAP exchange determination if applicable
+    if(aapEx != null && hasBili){
       if(bili >= aapEx){
         rec = { level: 'Exchange threshold or higher (AAP any risk)', detail: rec.detail, pt: rec.pt, ex: aapEx };
       }
     }
-    lines.push(`<strong>Assessment:</strong> ${rec.level}`);
-    if(rec.pt) lines.push(`Demo phototherapy threshold ~ ${rec.pt} mg/dL; demo exchange ~ ${rec.ex} mg/dL`);
-  // AAP lines already placed at top
+    if(hasBili){
+      details.push(`<div><strong>Assessment:</strong> ${rec.level}</div>`);
+      if(rec.pt) details.push(`<div class="small muted">Demo phototherapy ~ ${rec.pt} mg/dL; demo exchange ~ ${rec.ex} mg/dL</div>`);
+    }
+  if(aapExactText) details.push(`<div class="small muted">${aapExactText}</div>`);
 
-    $('#summary').innerHTML = lines.join('<br/>');
+    $('#summary').innerHTML = [headerHtml, metaHtml, ...details].filter(Boolean).join('');
   }
 
-  function toPDF(){
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ unit: 'pt', format: 'letter' });
-
-    doc.setFontSize(14);
-    doc.text('Age & Bilirubin (Demo)', 40, 40);
-
-    // Add summary
-    const summary = $('#summary').innerText || '';
-    const wrapped = doc.splitTextToSize(summary, 520);
-    doc.setFontSize(10);
-    doc.text(wrapped, 40, 60);
-
-    // Add chart canvas
-    const canvas = ctx;
-    const dataUrl = canvas.toDataURL('image/png', 1.0);
-    doc.addImage(dataUrl, 'PNG', 40, 120, 520, 300);
-
-    doc.setFontSize(8);
-    doc.text('For education only — not for clinical use. Curves are demo; AAP exchange (any risk) overlay when selected.', 40, 440);
-
-    doc.save('age-bilirubin-demo.pdf');
-  }
+  // PDF export removed
 
   function calcAge(){
     const dob = $('#dob').value; // datetime-local
@@ -203,8 +197,65 @@
     return [];
   }
 
+  function convertToJsRows(){
+    const raw = $('#verifyInput').value;
+    const lines = raw.split(/\r?\n/);
+    const rows = Array.from({length: 15}, () => null);
+    for(const line of lines){
+      const nums = (line.match(/[-+]?[0-9]*\.?[0-9]+/g) || []).map(Number).filter(n => Number.isFinite(n));
+      if(!nums.length) continue;
+      if(isHeader024(nums)) continue;
+      if(nums.length === 25 && Number.isInteger(nums[0]) && nums[0] >= 0 && nums[0] <= 14){
+        const day = nums[0];
+        const vals = nums.slice(1);
+        if(vals.length === 24) rows[day] = vals;
+      } else if(nums.length === 24){
+        const day = rows.findIndex(r => r === null);
+        if(day !== -1) rows[day] = nums;
+      }
+    }
+    // Validate provided rows have 24 values
+    for(let d=0; d<15; d++){
+      if(rows[d] && rows[d].length !== 24){
+        $('#convertOutput').value = `Row for day ${d} has ${rows[d].length} values; expected 24.`;
+        return;
+      }
+    }
+    // Determine last filled day and plateau value
+    let lastFilled = -1;
+    for(let d=14; d>=0; d--){ if(rows[d]) { lastFilled = d; break; } }
+    if(lastFilled === -1){
+      $('#convertOutput').value = 'No rows detected. Paste day-labeled rows or lines of 24 values.';
+      return;
+    }
+    const plateau = Number((rows[lastFilled][23] != null ? rows[lastFilled][23] : rows[lastFilled][rows[lastFilled].length-1]).toFixed(1));
+    // Auto-fill missing days with a flat plateau row up to day 14
+    for(let d=0; d<15; d++){
+      if(!rows[d]) rows[d] = Array(24).fill(plateau);
+    }
+    // format
+    const js = rows.map(r => `[${r.map(v => Number(v.toFixed(1))).join(',')}]`).join(',\n    ');
+    $('#convertOutput').value = js;
+  }
+
+  async function copyConverted(){
+    const txt = $('#convertOutput').value || '';
+    if(!txt) return;
+    try{
+      await navigator.clipboard.writeText(txt);
+    }catch(e){
+      // ignore
+    }
+  }
+
   function getInternalHourlyForGA(ga){
-    const arr = (window.AAP_AnyRisk_Exchange && window.AAP_AnyRisk_Exchange.tables[ga]) || [];
+    const kind = ($('#datasetKind') && $('#datasetKind').value) || 'exchange';
+    let arr = [];
+    if(kind === 'phototherapy'){
+      arr = (window.AAP_AnyRisk_Phototherapy && window.AAP_AnyRisk_Phototherapy.tables[ga]) || [];
+    } else {
+      arr = (window.AAP_AnyRisk_Exchange && window.AAP_AnyRisk_Exchange.tables[ga]) || [];
+    }
     return arr.map(p => p.y);
   }
 
@@ -250,27 +301,32 @@
 
   function exportDatasetJSON(){
     const ga = Number($('#ga').value);
-    const table = (window.AAP_AnyRisk_Exchange && window.AAP_AnyRisk_Exchange.tables[ga]) || [];
+    const kind = ($('#datasetKind') && $('#datasetKind').value) || 'exchange';
+    const table = kind === 'phototherapy'
+      ? ((window.AAP_AnyRisk_Phototherapy && window.AAP_AnyRisk_Phototherapy.tables[ga]) || [])
+      : ((window.AAP_AnyRisk_Exchange && window.AAP_AnyRisk_Exchange.tables[ga]) || []);
     const obj = table.map(p => ({ hour: p.x, value: p.y }));
     const blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `aap_anyrisk_exchange_ga${ga}.json`;
+    a.download = (kind === 'phototherapy') ? `aap_anyrisk_phototherapy_ga${ga}.json` : `aap_anyrisk_exchange_ga${ga}.json`;
     a.click();
     setTimeout(()=>URL.revokeObjectURL(url), 5000);
   }
 
   // Events
-  $('#plotBtn').addEventListener('click', () => { drawChart(); computeSummary(); });
-  $('#resetBtn').addEventListener('click', () => { setTimeout(()=>{ drawChart(); $('#summary').textContent=''; }, 0); });
-  $('#pdfBtn').addEventListener('click', toPDF);
-  $('#calcAgeBtn').addEventListener('click', () => { calcAge(); drawChart(); computeSummary(); });
-  $$('#controls input, #controls select').forEach(el => el.addEventListener('change', ()=>{ drawChart(); computeSummary(); }));
+  // Live updates on change
+  $('#resetBtn').addEventListener('click', () => { setTimeout(()=>{ $('#summary').textContent=''; computeSummary(); }, 0); });
+  $('#calcAgeBtn').addEventListener('click', () => { calcAge(); computeSummary(); });
+  // Recompute on every keystroke as well as change
+  $$('#controls input').forEach(el => el.addEventListener('input', ()=>{ computeSummary(); }));
+  $$('#controls input, #controls select').forEach(el => el.addEventListener('change', ()=>{ computeSummary(); }));
   $('#verifyBtn').addEventListener('click', verifyAgainstDataset);
   $('#exportBtn').addEventListener('click', exportDatasetJSON);
+  $('#convertBtn').addEventListener('click', convertToJsRows);
+  $('#copyConvertBtn').addEventListener('click', copyConverted);
 
   // Initial render
-  drawChart();
   computeSummary();
 })();
