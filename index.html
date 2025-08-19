@@ -11,8 +11,15 @@
 </head>
 <body>
   <header>
-    <h1>AAP 2022 Hyperbilirubinemia Management Guidelines</h1>
-    <p class="disclaimer">For demonstration only, inspired by https://peditools.org/bili2022/</p>
+    <div class="header-content">
+      <div class="header-text">
+        <h1>AAP 2022 Hyperbilirubinemia Management Guidelines</h1>
+        <p class="disclaimer">For demonstration only, inspired by https://peditools.org/bili2022/</p>
+      </div>
+      <div class="header-actions">
+        <button id="forceRefreshBtn" type="button" class="refresh-btn" title="Force refresh to get latest updates from GitHub Pages">🔄 Force Refresh</button>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -146,6 +153,57 @@
   <script src="app.js"></script>
   
   <script>
+    // Force refresh functionality
+    async function forceRefresh() {
+      const refreshBtn = document.getElementById('forceRefreshBtn');
+      
+      try {
+        // Disable button and show loading state
+        refreshBtn.disabled = true;
+        refreshBtn.classList.add('refreshing');
+        refreshBtn.textContent = '🔄 Refreshing...';
+        
+        // Clear all caches
+        if ('caches' in window) {
+          const cacheNames = await caches.keys();
+          await Promise.all(
+            cacheNames.map(cacheName => {
+              console.log('Clearing cache:', cacheName);
+              return caches.delete(cacheName);
+            })
+          );
+        }
+        
+        // Unregister service worker if present
+        if ('serviceWorker' in navigator) {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(
+            registrations.map(registration => {
+              console.log('Unregistering service worker');
+              return registration.unregister();
+            })
+          );
+        }
+        
+        // Clear localStorage (optional - preserves user data)
+        // localStorage.clear();
+        
+        // Force reload from server (bypass cache)
+        window.location.reload(true);
+        
+      } catch (error) {
+        console.error('Error during force refresh:', error);
+        
+        // Reset button state on error
+        refreshBtn.disabled = false;
+        refreshBtn.classList.remove('refreshing');
+        refreshBtn.textContent = '🔄 Force Refresh';
+        
+        // Fallback: just reload the page
+        window.location.reload();
+      }
+    }
+
     // Register Service Worker for offline functionality
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -160,6 +218,14 @@
     } else {
       console.log('ServiceWorker is not supported in this browser.');
     }
+
+    // Set up force refresh button
+    window.addEventListener('load', () => {
+      const forceRefreshBtn = document.getElementById('forceRefreshBtn');
+      if (forceRefreshBtn) {
+        forceRefreshBtn.addEventListener('click', forceRefresh);
+      }
+    });
   </script>
 </body>
 </html>
