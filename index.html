@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,29 +8,61 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#0ea5e9" />
-  
+
 </head>
+
 <body>
   <header>
     <div class="header-content">
       <div class="header-text">
-        <h1>AAP 2022 Hyperbilirubinemia Management Guidelines</h1>
-        <p class="disclaimer">For demonstration only, inspired by https://peditools.org/bili2022/</p>
+        <h2>AAP 2022 Hyperbilirubinemia</h2>
+        <button id="forceRefreshBtn" type="button" class="refresh-btn"
+          title="Force refresh to get latest updates from GitHub Pages">🔄 Force Refresh</button>
+        <!-- <p class="disclaimer">For demonstration only, inspired by https://peditools.org/bili2022/</p> -->
       </div>
-      <div class="header-actions">
-        <button id="forceRefreshBtn" type="button" class="refresh-btn" title="Force refresh to get latest updates from GitHub Pages">🔄 Force Refresh</button>
-      </div>
+      <!-- <div class="header-actions">
+        <button id="forceRefreshBtn" type="button" class="refresh-btn"
+          title="Force refresh to get latest updates from GitHub Pages">🔄 Force Refresh</button>
+      </div> -->
     </div>
   </header>
 
   <main>
-    <section class="card results-card">
+
+    <section class="card results-card" style="position:sticky; top:0em; z-index:2;">
       <h2>Results</h2>
       <div id="summary" class="summary"></div>
+      <div class="actions">
+        <button id="peditoolsApiBtn" type="button">Fetch PediTools 2022 API</button>
+        <button id="showApiDetailsBtn" style="margin-left:1em;">Show API Details</button>
+      </div>
+      <div id="peditoolsResult" class="summary" style="margin-top:0em;"></div>
     </section>
+    <div style="display: flex; gap: 2em; align-items: flex-start; margin-top:0em;">
+      <aside style="flex: 1 1 350px; min-width: 300px; max-width: 400px;">
+        <!-- Show API Details button moved to Results card actions -->
+        <div id="peditoolsApiDetailsOverlay"
+          style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:9999;overflow:auto;">
+          <div
+            style="background:#fff;max-width:600px;margin:3em auto;padding:2em;border-radius:8px;box-shadow:0 2px 16px #0002;position:relative;">
+            <button id="closeApiDetailsBtn" style="position:absolute;top:1em;right:1em;">Close</button>
+            <div id="peditoolsApiDetailsContent"></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+    </section>
+    <!-- <div style="display: flex; gap: 2em; align-items: flex-start; margin-top:2em;">
+      <aside style="flex: 1 1 350px; min-width: 300px; max-width: 400px;">
+        <h3 style="margin-top:0;">PediTools Page Preview:</h3>
+<div id="peditoolsIframePreview" style="margin:0;">
+  <iframe id="peditoolsIframe" src="" style="width:100%; height:600px; border:none; transform:scale(0.8); transform-origin:0 0;"></iframe>
+</div>
+      </aside>
+    </div> -->
 
-    <section class="card">
-      <h2>Inputs</h2>
+    <section class="card" style="margin-top:0em;">
+      <!-- <h2>Inputs</h2> -->
       <form id="controls" onsubmit="return false;">
         <div class="grid">
           <label>
@@ -63,7 +96,7 @@
             <label><input type="radio" name="risk" value="both" /> Show both</label>
           </fieldset>
 
-          
+
         </div>
 
         <div class="actions">
@@ -89,11 +122,12 @@
       </div>
     </section>
 
-    
+
 
     <section class="card">
       <h2>Verify AAP table (optional)</h2>
-      <p class="small">Paste 15 rows × 24 values (360 numbers) for the selected GA. Choose Exchange (Table 4) or Phototherapy (Table 2). Non-numeric text will be ignored.</p>
+      <p class="small">Paste 15 rows × 24 values (360 numbers) for the selected GA. Choose Exchange (Table 4) or
+        Phototherapy (Table 2). Non-numeric text will be ignored.</p>
       <div class="grid">
         <label>
           <span>Dataset</span>
@@ -104,7 +138,8 @@
         </label>
         <label>
           <span>Paste table values</span>
-          <textarea id="verifyInput" rows="6" style="width:100%;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"></textarea>
+          <textarea id="verifyInput" rows="6"
+            style="width:100%;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"></textarea>
         </label>
       </div>
       <div class="actions">
@@ -113,16 +148,18 @@
       </div>
       <div id="verifyOutput" class="summary"></div>
 
-      <hr/>
+      <hr />
       <h3>Convert pasted table to JS dataset rows</h3>
-      <p class="small">Converts the day/hour table into array-of-arrays rows, ready to paste inside the dataset file.</p>
+      <p class="small">Converts the day/hour table into array-of-arrays rows, ready to paste inside the dataset file.
+      </p>
       <div class="actions">
         <button id="convertBtn" type="button">Convert to JS rows</button>
         <button id="copyConvertBtn" type="button">Copy output</button>
       </div>
       <label>
         <span class="small">JS rows output</span>
-        <textarea id="convertOutput" rows="8" readonly style="width:100%;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"></textarea>
+        <textarea id="convertOutput" rows="8" readonly
+          style="width:100%;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"></textarea>
       </label>
     </section>
 
@@ -143,7 +180,8 @@
           <li>Prematurity is accounted for by gestational-age selection</li>
         </ul>
       </details>
-      <p class="disclaimer small">References: AAP 2022 Hyperbilirubinemia guideline. This demo does not reproduce the original curves; values shown are illustrative.</p>
+      <p class="disclaimer small">References: AAP 2022 Hyperbilirubinemia guideline. This demo does not reproduce the
+        original curves; values shown are illustrative.</p>
     </section>
   </main>
 
@@ -151,18 +189,18 @@
   <script src="thresholds_aap_anyrisk_exchange.js"></script>
   <script src="thresholds_aap_anyrisk_phototherapy.js"></script>
   <script src="app.js"></script>
-  
+
   <script>
     // Force refresh functionality
     async function forceRefresh() {
       const refreshBtn = document.getElementById('forceRefreshBtn');
-      
+
       try {
         // Disable button and show loading state
         refreshBtn.disabled = true;
         refreshBtn.classList.add('refreshing');
         refreshBtn.textContent = '🔄 Refreshing...';
-        
+
         // Clear all caches
         if ('caches' in window) {
           const cacheNames = await caches.keys();
@@ -173,7 +211,7 @@
             })
           );
         }
-        
+
         // Unregister service worker if present
         if ('serviceWorker' in navigator) {
           const registrations = await navigator.serviceWorker.getRegistrations();
@@ -184,21 +222,21 @@
             })
           );
         }
-        
+
         // Clear localStorage (optional - preserves user data)
         // localStorage.clear();
-        
+
         // Force reload from server (bypass cache)
         window.location.reload(true);
-        
+
       } catch (error) {
         console.error('Error during force refresh:', error);
-        
+
         // Reset button state on error
         refreshBtn.disabled = false;
         refreshBtn.classList.remove('refreshing');
         refreshBtn.textContent = '🔄 Force Refresh';
-        
+
         // Fallback: just reload the page
         window.location.reload();
       }
@@ -228,6 +266,5 @@
     });
   </script>
 </body>
+
 </html>
-
-
