@@ -1,0 +1,25 @@
+{
+  "name": "AAP 2022 Hyperbilirubinemia Management Guidelines",
+  "short_name": "Ped Bili",
+  "description": "Neonatal Age & Bilirubin management tool for hyperbilirubinemia assessment",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0ea5e9",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "lang": "en",
+  "categories": ["medical", "healthcare", "tools"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9IiMwZWE1ZTkiLz4KPHN2ZyB4PSI0OCIgeT0iNDgiIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTkuNSAxMmMwIDEuMjMyLS4wNDYgMi40NTMtLjEzOCAzLjY2MmEzNy45IDM3LjkgMCAwMS0uMzEyIDMuMjE4aC0zLjAwOEExMS45NDggMTEuOTQ4IDAgMDAxNiAxOC4zVjEyaDMuNXptLTcgMHY2LjNjMCAuMjQ3LS4wNDIgLjYzNS0uMTI2IDEuMTY0LS4wNDIuMjY1LS4wOTEuNTQ2LS4xNDcuODQyLS4xMTIuNTkzLS4yNDEgMS4yMTgtLjM4NyAxLjg3NGgtMS44NGMtLjE0Ni0uNjU2LS4yNzUtMS4yODEtLjM4Ny0xLjg3NGExNC44IDkuOCAwIDAxLS4yNzMgMS40MTRCOC41MTYgMTMuODQgOC4xMzMgMTMuNzQ5IDcuNSAxMy4zVjEyaDV6bS00IDB2MS4zYzAtLjQwMS0uMjI1LS44NzItLjY3NC0xLjQxNEEyLjEzNSAyLjEzNSAwIDAwNy4xMjYgMTEuMTY0QzguMDQyIDExLjYzNSA4IDEyLjI0NyA4IDEyeiIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4KPC9zdmc+",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iNjQiIGZpbGw9IiMwZWE1ZTkiLz4KPHN2ZyB4PSIxMjgiIHk9IjEyOCIgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE5LjUgMTJjMCAxLjIzMi0uMDQ2IDIuNDUzLS4xMzggMy42NjJhMzcuOSAzNy45IDAgMDEtLjMxMiAzLjIxOGgtMy4wMDhBMTEuOTQ4IDExLjk0OCAwIDAwMTYgMTguM1YxMmgzLjV6bS03IDB2Ni4zYzAgLjI0Ny0uMDQyLjYzNS0uMTI2IDEuMTY0LS4wNDIuMjY1LS4wOTEuNTQ2LS4xNDcuODQyLS4xMTIuNTkzLS4yNDEgMS4yMTgtLjM4NyAxLjg3NGgtMS44NGMtLjE0Ni0uNjU2LS4yNzUtMS4yODEtLjM4Ny0xLjg3NGExNC44IDkuOCAwIDAxLS4yNzMgMS40MTRCOC41MTYgMTMuODQgOC4xMzMgMTMuNzQ5IDcuNSAxMy4zVjEyaDV6bS00IDB2MS4zYzAtLjQwMS0uMjI1LS44NzItLjY3NC0xLjQxNEEyLjEzNSAyLjEzNSAwIDAwNy4xMjYgMTEuMTY0QzguMDQyIDExLjYzNSA4IDEyLjI0NyA4IDEyeiIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4KPC9zdmc+",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
