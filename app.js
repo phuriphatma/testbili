@@ -139,7 +139,7 @@
           const tbiliTxt = tbili!=null ? ` · TSB ${tbili} (${cmp} ${exV})` : '';
           return `h${ex.hour}: ${both}${tbiliTxt}`;
         });
-
+        aapExactText = `AAP any-risk thresholds (photo, exchange) by hour: ${rows.join(', ')}`;
       }
     }
 
