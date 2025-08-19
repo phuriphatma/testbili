@@ -120,7 +120,7 @@
 
   // If any-risk selected, show AAP exchange for that GA as authoritative overlay
   let aapEx = null;
-  let aapExactText = '';
+  let aapExactText = 'hi';
     if(risk !== 'no_risk' && window.AAP_AnyRisk_Exchange){
       if(typeof age === 'number' && !isNaN(age)){
         const exact = window.AAP_AnyRisk_Exchange.getExchangeExact(ga, age);
@@ -395,4 +395,5 @@
   loadFormData();
   computeSummary();
 })();
+
 
