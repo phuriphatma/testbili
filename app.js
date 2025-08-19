@@ -182,7 +182,7 @@
       details.push(`<div><strong>Assessment:</strong> ${rec.level}</div>`);
       if(rec.pt) details.push(`<div class="small muted">Demo phototherapy ~ ${rec.pt} mg/dL; demo exchange ~ ${rec.ex} mg/dL</div>`);
     }
-  if(aapExactText) details.push(`<div class="small muted">${aapExactText}</div>`);
+
 
     $('#summary').innerHTML = [headerHtml, metaHtml, ...details].filter(Boolean).join('');
   }
