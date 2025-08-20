@@ -182,6 +182,18 @@
       </details>
       <p class="disclaimer small">References: AAP 2022 Hyperbilirubinemia guideline. This demo does not reproduce the
         original curves; values shown are illustrative.</p>
+
+      <hr />
+      <div class="actions">
+        <button id="testAllAnyRiskBtn" type="button">Check all thresholds (any risk)</button>
+      </div>
+      <div id="testAllAnyRiskModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:9999;overflow:auto;">
+        <div style="background:#fff;max-width:700px;margin:3em auto;padding:2em;border-radius:8px;box-shadow:0 2px 16px #0002;position:relative;">
+          <button id="testAllAnyRiskModalClose" style="position:absolute;top:1em;right:1em;">Close</button>
+          <h3>Any Risk Threshold Test Results</h3>
+          <div id="testAllAnyRiskModalContent" style="max-height:60vh;overflow:auto;white-space:pre-wrap;"></div>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -189,7 +201,6 @@
   <script src="thresholds_aap_anyrisk_exchange.js"></script>
   <script src="thresholds_aap_anyrisk_phototherapy.js"></script>
   <script src="app.js"></script>
-
   <script>
     // Force refresh functionality
     async function forceRefresh() {
