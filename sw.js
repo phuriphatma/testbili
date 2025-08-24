@@ -2,13 +2,14 @@
 const CACHE_NAME = 'ped-bili-v7';
 const STATIC_ASSETS = [
   './',
-  './index.html',
-  './styles.css',
-  './app.js',
-  './thresholds_demo.js',
-  './thresholds_aap_anyrisk_exchange.js',
-  './thresholds_aap_anyrisk_phototherapy.js',
-  './manifest.json'
+  './bili/',
+  './bili/index.html',
+  './bili/styles.css',
+  './bili/app.js',
+  './bili/thresholds_demo.js',
+  './bili/thresholds_aap_anyrisk_exchange.js',
+  './bili/thresholds_aap_anyrisk_phototherapy.js',
+  './bili/manifest.json'
 ];
 
 // Install event - cache static assets
