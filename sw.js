@@ -1,5 +1,5 @@
 // Service Worker for offline functionality
-const CACHE_NAME = 'ped-bili-v6';
+const CACHE_NAME = 'ped-bili-v7';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -66,7 +66,7 @@ self.addEventListener('fetch', (event) => {
           console.log('Service Worker: Serving from cache', event.request.url);
           return cachedResponse;
         }
-        
+
         // Not in cache, fetch from network
         console.log('Service Worker: Fetching from network', event.request.url);
         return fetch(event.request)
