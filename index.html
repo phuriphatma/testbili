@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UCAL - Version Selector</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .version-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .version-btn {
+            padding: 1.5rem 2rem;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+        }
+
+        .stable {
+            background: rgba(46, 204, 113, 0.8);
+            color: white;
+        }
+
+        .stable:hover {
+            background: rgba(46, 204, 113, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .dev {
+            background: rgba(241, 196, 15, 0.8);
+            color: #2c3e50;
+        }
+
+        .dev:hover {
+            background: rgba(241, 196, 15, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .feature h3 {
+            margin-bottom: 0.5rem;
+            color: #f39c12;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .version-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .version-btn {
+                min-width: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🧮 UCAL</h1>
+        <p class="subtitle">GA Calculator - Choose Your Version</p>
+
+        <div class="version-buttons">
+            <a href="/ucal/main/" class="version-btn stable">
+                🟢 Stable Version<br>
+                <small>Production Ready</small>
+            </a>
+            <a href="./bili/index.html" class="version-btn dev">
+                🧪 Development Version<br>
+                <small>Latest Features</small>
+            </a>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>📱 GA Calculator</h3>
+                <p>Comprehensive pregnancy calculator with multiple date formats</p>
+            </div>
+            <div class="feature">
+                <h3>📊 Average Calculator</h3>
+                <p>Quick mathematical calculations with history</p>
+            </div>
+            <div class="feature">
+                <h3>⚙️ PWA Support</h3>
+                <p>Install as mobile app, works offline</p>
+            </div>
+            <div class="feature">
+                <h3>🎨 Settings</h3>
+                <p>Customizable themes and preferences</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
