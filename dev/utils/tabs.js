@@ -31,7 +31,7 @@ function switchTab(tabId) {
     } else if (tabId === 'settings') {
         window.location.href = '../settings/settings.html';
     } else if (tabId === 'bili') {
-        window.location.href = '../index.html';
+        window.location.href = '../bili/index.html';
     }
 
     // Only navigate if not already on the target page
