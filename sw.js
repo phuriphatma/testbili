@@ -11,7 +11,8 @@ const STATIC_ASSETS = [
   './dev/thresholds_aap_anyrisk_phototherapy.js',
   './dev/manifest.json',
   './dev/ga/calculator.js',
-  './dev/ga/ga.html'
+  './dev/ga/ga.html',
+  './dev/utils/tabs.js'
 ];
 
 // Install event - cache static assets
