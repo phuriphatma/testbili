@@ -13,7 +13,8 @@ const STATIC_ASSETS = [
   './dev/bili/manifest.json',
   './dev/ga/calculator.js',
   './dev/ga/ga.html',
-  './dev/utils/tabs.js'
+  './dev/utils/tabs.js',
+  './dev/avg/avg.html'
 ];
 
 // Install event - cache static assets
