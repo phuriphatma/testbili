@@ -2,7 +2,7 @@
   "name": "AAP 2022 Hyperbilirubinemia Management Guidelines",
   "short_name": "Ped Bili",
   "description": "Neonatal Age & Bilirubin management tool for hyperbilirubinemia assessment",
-  "start_url": "./",
+  "start_url": "./bili.html",
   "display": "standalone",
   "background_color": "#f8fafc",
   "theme_color": "#0ea5e9",
