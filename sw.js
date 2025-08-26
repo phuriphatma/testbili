@@ -4,7 +4,7 @@ const STATIC_ASSETS = [
   './',
   './dev/',
   './dev/bili/',
-  './dev/bili/index.html',
+  './dev/bili/bili.html',
   './dev/bili/styles.css',
   './dev/bili/app.js',
   './dev/bili/thresholds_demo.js',
