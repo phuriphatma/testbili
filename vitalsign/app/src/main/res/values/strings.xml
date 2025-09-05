@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VitalSign Patient Manager</string>
+    <string name="add_patient">Add Patient</string>
+    <string name="patient_details">Patient Details</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="patient_name">Patient Name</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="age">Age</string>
+    <string name="add_event">Add Event</string>
+    <string name="show_monthly_view">Show Monthly View</string>
+    <string name="current_date">Current Date</string>
+    <string name="current_day">Current Day</string>
+    <string name="buddhist_year">Buddhist Year</string>
+    <string name="events">Events</string>
+    <string name="no_events">No events recorded</string>
+</resources>

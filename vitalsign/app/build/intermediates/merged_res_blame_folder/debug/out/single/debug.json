@@ -1,0 +1,74 @@
+[
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/xml_data_extraction_rules.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/layout_item_patient.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/layout/item_patient.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/layout_item_timeline_month.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/layout/item_timeline_month.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/xml_backup_rules.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/layout_activity_main.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/layout_activity_add_patient.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/layout/activity_add_patient.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/drawable_circle_button_small_background.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/drawable/circle_button_small_background.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/layout_item_timeline_month_table.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/layout/item_timeline_month_table.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/layout_item_timeline_day.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/layout/item_timeline_day.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/drawable_circle_button_background.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/drawable/circle_button_background.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/layout_activity_fullscreen_timeline.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/layout/activity_fullscreen_timeline.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/layout_dialog_add_event.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/layout/dialog_add_event.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/layout_item_timeline_year_table.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/layout/item_timeline_year_table.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/layout_item_timeline_day_table.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/layout/item_timeline_day_table.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_activity_fullscreen_timeline.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-37:/layout/activity_fullscreen_timeline.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/layout_activity_patient_detail.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/layout/activity_patient_detail.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/layout_item_life_event.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/layout/item_life_event.xml"
+    },
+    {
+        "merged": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-merged_res-35:/layout_item_timeline_year.xml.flat",
+        "source": "/Users/xeno/.gradle/daemon/8.4/com.vitalsign.patientmanager.app-main-37:/layout/item_timeline_year.xml"
+    }
+]

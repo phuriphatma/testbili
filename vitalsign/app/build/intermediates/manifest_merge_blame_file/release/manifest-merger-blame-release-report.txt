@@ -1,0 +1,160 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.vitalsign.patientmanager"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="34" />
+10
+11    <permission
+11-->[androidx.core:core:1.12.0] /Users/xeno/.gradle/caches/transforms-3/27ad49e110844709146a48c38c841427/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+12        android:name="com.vitalsign.patientmanager.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+12-->[androidx.core:core:1.12.0] /Users/xeno/.gradle/caches/transforms-3/27ad49e110844709146a48c38c841427/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+13        android:protectionLevel="signature" />
+13-->[androidx.core:core:1.12.0] /Users/xeno/.gradle/caches/transforms-3/27ad49e110844709146a48c38c841427/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+14
+15    <uses-permission android:name="com.vitalsign.patientmanager.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+15-->[androidx.core:core:1.12.0] /Users/xeno/.gradle/caches/transforms-3/27ad49e110844709146a48c38c841427/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+15-->[androidx.core:core:1.12.0] /Users/xeno/.gradle/caches/transforms-3/27ad49e110844709146a48c38c841427/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+16
+17    <application
+17-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:5:5-44:19
+18        android:allowBackup="true"
+18-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:6:9-35
+19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+19-->[androidx.core:core:1.12.0] /Users/xeno/.gradle/caches/transforms-3/27ad49e110844709146a48c38c841427/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+20        android:dataExtractionRules="@xml/data_extraction_rules"
+20-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:7:9-65
+21        android:extractNativeLibs="false"
+22        android:fullBackupContent="@xml/backup_rules"
+22-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:8:9-54
+23        android:icon="@android:drawable/ic_menu_manage"
+23-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:9:9-56
+24        android:label="@string/app_name"
+24-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:10:9-41
+25        android:roundIcon="@android:drawable/ic_menu_manage"
+25-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:11:9-61
+26        android:supportsRtl="true"
+26-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:12:9-35
+27        android:theme="@style/Theme.VitalSignPatientManager" >
+27-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:13:9-61
+28        <activity
+28-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:16:9-24:20
+29            android:name="com.vitalsign.patientmanager.MainActivity"
+29-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:17:13-41
+30            android:exported="true"
+30-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:18:13-36
+31            android:theme="@style/Theme.VitalSignPatientManager" >
+31-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:19:13-65
+32            <intent-filter>
+32-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:20:13-23:29
+33                <action android:name="android.intent.action.MAIN" />
+33-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:21:17-69
+33-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:21:25-66
+34
+35                <category android:name="android.intent.category.LAUNCHER" />
+35-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:22:17-77
+35-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:22:27-74
+36            </intent-filter>
+37        </activity>
+38        <activity
+38-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:26:9-30:58
+39            android:name="com.vitalsign.patientmanager.PatientDetailActivity"
+39-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:27:13-50
+40            android:exported="false"
+40-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:28:13-37
+41            android:parentActivityName="com.vitalsign.patientmanager.MainActivity"
+41-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:30:13-55
+42            android:theme="@style/Theme.VitalSignPatientManager" />
+42-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:29:13-65
+43        <activity
+43-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:32:9-36:58
+44            android:name="com.vitalsign.patientmanager.AddPatientActivity"
+44-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:33:13-47
+45            android:exported="false"
+45-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:34:13-37
+46            android:parentActivityName="com.vitalsign.patientmanager.MainActivity"
+46-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:36:13-55
+47            android:theme="@style/Theme.VitalSignPatientManager" />
+47-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:35:13-65
+48        <activity
+48-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:38:9-42:67
+49            android:name="com.vitalsign.patientmanager.FullscreenTimelineActivity"
+49-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:39:13-55
+50            android:exported="false"
+50-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:40:13-37
+51            android:parentActivityName="com.vitalsign.patientmanager.PatientDetailActivity"
+51-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:42:13-64
+52            android:theme="@style/Theme.VitalSignPatientManager" />
+52-->/Users/xeno/webdev/vitalsign/app/src/main/AndroidManifest.xml:41:13-65
+53
+54        <provider
+54-->[androidx.emoji2:emoji2:1.2.0] /Users/xeno/.gradle/caches/transforms-3/fc54dde20eb54929f91888b76e8cac07/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+55            android:name="androidx.startup.InitializationProvider"
+55-->[androidx.emoji2:emoji2:1.2.0] /Users/xeno/.gradle/caches/transforms-3/fc54dde20eb54929f91888b76e8cac07/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+56            android:authorities="com.vitalsign.patientmanager.androidx-startup"
+56-->[androidx.emoji2:emoji2:1.2.0] /Users/xeno/.gradle/caches/transforms-3/fc54dde20eb54929f91888b76e8cac07/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+57            android:exported="false" >
+57-->[androidx.emoji2:emoji2:1.2.0] /Users/xeno/.gradle/caches/transforms-3/fc54dde20eb54929f91888b76e8cac07/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+58            <meta-data
+58-->[androidx.emoji2:emoji2:1.2.0] /Users/xeno/.gradle/caches/transforms-3/fc54dde20eb54929f91888b76e8cac07/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+59                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+59-->[androidx.emoji2:emoji2:1.2.0] /Users/xeno/.gradle/caches/transforms-3/fc54dde20eb54929f91888b76e8cac07/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+60                android:value="androidx.startup" />
+60-->[androidx.emoji2:emoji2:1.2.0] /Users/xeno/.gradle/caches/transforms-3/fc54dde20eb54929f91888b76e8cac07/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+61            <meta-data
+61-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/xeno/.gradle/caches/transforms-3/2f5faf8ffd5553d065bee578728a13f0/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
+62                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+62-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/xeno/.gradle/caches/transforms-3/2f5faf8ffd5553d065bee578728a13f0/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
+63                android:value="androidx.startup" />
+63-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/xeno/.gradle/caches/transforms-3/2f5faf8ffd5553d065bee578728a13f0/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
+64            <meta-data
+64-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+65                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+65-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+66                android:value="androidx.startup" />
+66-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+67        </provider>
+68
+69        <receiver
+69-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+70            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+70-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+71            android:directBootAware="false"
+71-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+72            android:enabled="true"
+72-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+73            android:exported="true"
+73-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+74            android:permission="android.permission.DUMP" >
+74-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+75            <intent-filter>
+75-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+76                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+76-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+76-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+77            </intent-filter>
+78            <intent-filter>
+78-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+79                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+79-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+79-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+80            </intent-filter>
+81            <intent-filter>
+81-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+82                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+82-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+82-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+83            </intent-filter>
+84            <intent-filter>
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+85                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+85-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+85-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/xeno/.gradle/caches/transforms-3/7c440f90495adcf781698b034dda88c9/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+86            </intent-filter>
+87        </receiver>
+88    </application>
+89
+90</manifest>

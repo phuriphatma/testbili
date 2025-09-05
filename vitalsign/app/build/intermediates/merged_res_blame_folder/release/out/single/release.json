@@ -1,0 +1,70 @@
+[
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/xml_backup_rules.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_activity_add_patient.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/layout/activity_add_patient.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_item_timeline_month_table.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/layout/item_timeline_month_table.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_item_timeline_day.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/layout/item_timeline_day.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_item_patient.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/layout/item_patient.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/drawable_circle_button_background.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/drawable/circle_button_background.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_activity_main.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/xml_data_extraction_rules.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/drawable_circle_button_small_background.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/drawable/circle_button_small_background.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_dialog_add_event.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/layout/dialog_add_event.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_item_timeline_year_table.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/layout/item_timeline_year_table.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_item_life_event.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/layout/item_life_event.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_item_timeline_year.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/layout/item_timeline_year.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_activity_fullscreen_timeline.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/layout/activity_fullscreen_timeline.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_item_timeline_month.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/layout/item_timeline_month.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_item_timeline_day_table.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/layout/item_timeline_day_table.xml"
+    },
+    {
+        "merged": "com.vitalsign.patientmanager.app-merged_res-35:/layout_activity_patient_detail.xml.flat",
+        "source": "com.vitalsign.patientmanager.app-main-36:/layout/activity_patient_detail.xml"
+    }
+]

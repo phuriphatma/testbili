@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:paddingStart="152dp"
+    android:background="#F0F0F0"
+    android:minHeight="40dp"
+    android:minWidth="480dp">
+
+    <!-- Age Column (empty for day rows) -->
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_gravity="center_vertical" />
+
+    <!-- Year Column (empty for day rows) -->
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_gravity="center_vertical" />
+
+    <!-- Buddhist Year Column (empty for day rows) -->
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_gravity="center_vertical" />
+
+    <!-- Month Column (empty for day rows) -->
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_gravity="center_vertical" />
+
+    <!-- Day Column -->
+    <TextView
+        android:id="@+id/textDay"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="15"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/medical_orange" />
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/textEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tap to add event"
+            android:textSize="14sp"
+            android:layout_marginStart="8dp"
+            android:paddingVertical="2dp" />
+
+        <TextView
+            android:id="@+id/textDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:textColor="@color/medical_orange"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</LinearLayout>
