@@ -86,8 +86,26 @@ class FullscreenTimelineActivity : AppCompatActivity() {
             finish()
         }
         
-        binding.fabAddEvent.setOnClickListener {
-            showAddEventDialog()
+        // Zoom controls
+        binding.btnZoomIn.setOnClickListener {
+            binding.freeScrollContainer.zoomIn()
+        }
+        
+        binding.btnZoomOut.setOnClickListener {
+            binding.freeScrollContainer.zoomOut()
+        }
+        
+        binding.btnResetZoom.setOnClickListener {
+            binding.freeScrollContainer.resetZoom()
+        }
+        
+        // Keep existing fab if it exists
+        try {
+            binding.fabAddEvent.setOnClickListener {
+                showAddEventDialog()
+            }
+        } catch (e: Exception) {
+            // FAB doesn't exist in current layout, that's fine
         }
     }
     

@@ -138,23 +138,18 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
-                    <!-- Timeline with Guaranteed Free Movement Scrolling -->
-                    <ScrollView
+                    <!-- Timeline with Guaranteed Free Movement Scrolling and Zoom -->
+                    <com.vitalsign.patientmanager.view.FreeScrollContainer
+                        android:id="@+id/freeScrollContainer"
                         android:layout_width="match_parent"
-                        android:layout_height="400dp"
-                        android:scrollbars="vertical">
-                        
-                        <HorizontalScrollView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:scrollbars="horizontal">
+                        android:layout_height="400dp">
 
-                            <LinearLayout
-                                android:layout_width="2000dp"
-                                android:layout_height="1500dp"
-                                android:orientation="vertical"
-                                android:background="#FFE0E0E0"
-                                android:padding="8dp">
+                        <LinearLayout
+                            android:layout_width="2000dp"
+                            android:layout_height="1500dp"
+                            android:orientation="vertical"
+                            android:background="#FFE0E0E0"
+                            android:padding="8dp">
 
                                 <!-- Timeline Header -->
                                 <LinearLayout
@@ -236,9 +231,7 @@
 
                             </LinearLayout>
 
-                        </HorizontalScrollView>
-                        
-                    </ScrollView>                </LinearLayout>
+                    </com.vitalsign.patientmanager.view.FreeScrollContainer>                </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 

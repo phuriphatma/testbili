@@ -25,6 +25,15 @@ public final class ActivityFullscreenTimelineBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final Button btnResetZoom;
+
+  @NonNull
+  public final Button btnZoomIn;
+
+  @NonNull
+  public final Button btnZoomOut;
+
+  @NonNull
   public final Button buttonBack;
 
   @NonNull
@@ -55,12 +64,16 @@ public final class ActivityFullscreenTimelineBinding implements ViewBinding {
   public final LinearLayout timelineHeader;
 
   private ActivityFullscreenTimelineBinding(@NonNull ConstraintLayout rootView,
+      @NonNull Button btnResetZoom, @NonNull Button btnZoomIn, @NonNull Button btnZoomOut,
       @NonNull Button buttonBack, @NonNull FloatingActionButton fabAddEvent,
       @NonNull FreeScrollContainer freeScrollContainer, @NonNull TextView headerDay,
       @NonNull TextView headerMonth, @NonNull LinearLayout headerSection,
       @NonNull RecyclerView recyclerViewTimeline, @NonNull TextView textPatientInfo,
       @NonNull TextView textPatientName, @NonNull LinearLayout timelineHeader) {
     this.rootView = rootView;
+    this.btnResetZoom = btnResetZoom;
+    this.btnZoomIn = btnZoomIn;
+    this.btnZoomOut = btnZoomOut;
     this.buttonBack = buttonBack;
     this.fabAddEvent = fabAddEvent;
     this.freeScrollContainer = freeScrollContainer;
@@ -100,6 +113,24 @@ public final class ActivityFullscreenTimelineBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnResetZoom;
+      Button btnResetZoom = ViewBindings.findChildViewById(rootView, id);
+      if (btnResetZoom == null) {
+        break missingId;
+      }
+
+      id = R.id.btnZoomIn;
+      Button btnZoomIn = ViewBindings.findChildViewById(rootView, id);
+      if (btnZoomIn == null) {
+        break missingId;
+      }
+
+      id = R.id.btnZoomOut;
+      Button btnZoomOut = ViewBindings.findChildViewById(rootView, id);
+      if (btnZoomOut == null) {
+        break missingId;
+      }
+
       id = R.id.buttonBack;
       Button buttonBack = ViewBindings.findChildViewById(rootView, id);
       if (buttonBack == null) {
@@ -160,9 +191,10 @@ public final class ActivityFullscreenTimelineBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityFullscreenTimelineBinding((ConstraintLayout) rootView, buttonBack,
-          fabAddEvent, freeScrollContainer, headerDay, headerMonth, headerSection,
-          recyclerViewTimeline, textPatientInfo, textPatientName, timelineHeader);
+      return new ActivityFullscreenTimelineBinding((ConstraintLayout) rootView, btnResetZoom,
+          btnZoomIn, btnZoomOut, buttonBack, fabAddEvent, freeScrollContainer, headerDay,
+          headerMonth, headerSection, recyclerViewTimeline, textPatientInfo, textPatientName,
+          timelineHeader);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

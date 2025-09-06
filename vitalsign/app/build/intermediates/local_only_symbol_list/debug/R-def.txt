@@ -15,6 +15,9 @@ color teal_700
 color white
 drawable circle_button_background
 drawable circle_button_small_background
+id btnResetZoom
+id btnZoomIn
+id btnZoomOut
 id buttonBack
 id buttonCancel
 id buttonClearDOB

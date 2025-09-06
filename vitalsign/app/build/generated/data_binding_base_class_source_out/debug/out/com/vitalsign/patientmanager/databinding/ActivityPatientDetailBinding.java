@@ -17,6 +17,7 @@ import androidx.viewbinding.ViewBindings;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.vitalsign.patientmanager.R;
+import com.vitalsign.patientmanager.view.FreeScrollContainer;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -36,6 +37,9 @@ public final class ActivityPatientDetailBinding implements ViewBinding {
 
   @NonNull
   public final FloatingActionButton fabAddEvent;
+
+  @NonNull
+  public final FreeScrollContainer freeScrollContainer;
 
   @NonNull
   public final TextView headerDay;
@@ -70,16 +74,18 @@ public final class ActivityPatientDetailBinding implements ViewBinding {
   private ActivityPatientDetailBinding(@NonNull CoordinatorLayout rootView,
       @NonNull Button buttonFullscreenTimeline, @NonNull Button buttonShowMonthlyView,
       @NonNull TextInputEditText editDateOfBirth, @NonNull FloatingActionButton fabAddEvent,
-      @NonNull TextView headerDay, @NonNull TextView headerMonth,
-      @NonNull RecyclerView recyclerViewEvents, @NonNull TextView textAge,
-      @NonNull TextView textCurrentDate, @NonNull TextView textCurrentDay,
-      @NonNull TextView textPatientCreated, @NonNull TextView textPatientName,
-      @NonNull LinearLayout timelineHeader, @NonNull Toolbar toolbar) {
+      @NonNull FreeScrollContainer freeScrollContainer, @NonNull TextView headerDay,
+      @NonNull TextView headerMonth, @NonNull RecyclerView recyclerViewEvents,
+      @NonNull TextView textAge, @NonNull TextView textCurrentDate,
+      @NonNull TextView textCurrentDay, @NonNull TextView textPatientCreated,
+      @NonNull TextView textPatientName, @NonNull LinearLayout timelineHeader,
+      @NonNull Toolbar toolbar) {
     this.rootView = rootView;
     this.buttonFullscreenTimeline = buttonFullscreenTimeline;
     this.buttonShowMonthlyView = buttonShowMonthlyView;
     this.editDateOfBirth = editDateOfBirth;
     this.fabAddEvent = fabAddEvent;
+    this.freeScrollContainer = freeScrollContainer;
     this.headerDay = headerDay;
     this.headerMonth = headerMonth;
     this.recyclerViewEvents = recyclerViewEvents;
@@ -140,6 +146,12 @@ public final class ActivityPatientDetailBinding implements ViewBinding {
       id = R.id.fabAddEvent;
       FloatingActionButton fabAddEvent = ViewBindings.findChildViewById(rootView, id);
       if (fabAddEvent == null) {
+        break missingId;
+      }
+
+      id = R.id.freeScrollContainer;
+      FreeScrollContainer freeScrollContainer = ViewBindings.findChildViewById(rootView, id);
+      if (freeScrollContainer == null) {
         break missingId;
       }
 
@@ -204,9 +216,9 @@ public final class ActivityPatientDetailBinding implements ViewBinding {
       }
 
       return new ActivityPatientDetailBinding((CoordinatorLayout) rootView,
-          buttonFullscreenTimeline, buttonShowMonthlyView, editDateOfBirth, fabAddEvent, headerDay,
-          headerMonth, recyclerViewEvents, textAge, textCurrentDate, textCurrentDay,
-          textPatientCreated, textPatientName, timelineHeader, toolbar);
+          buttonFullscreenTimeline, buttonShowMonthlyView, editDateOfBirth, fabAddEvent,
+          freeScrollContainer, headerDay, headerMonth, recyclerViewEvents, textAge, textCurrentDate,
+          textCurrentDay, textPatientCreated, textPatientName, timelineHeader, toolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
