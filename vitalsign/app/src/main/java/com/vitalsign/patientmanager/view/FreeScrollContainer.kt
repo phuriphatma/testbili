@@ -36,8 +36,22 @@ class FreeScrollContainer @JvmOverloads constructor(
         super.addView(child, index, params)
         childView = child
     }
+    
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        // Make sure we handle all touch events
+        android.util.Log.d("FreeScrollContainer", "dispatchTouchEvent: ${ev.action}, pointers: ${ev.pointerCount}")
+        
+        // For multi-touch, ensure parent doesn't interfere
+        if (ev.pointerCount >= 2) {
+            parent?.requestDisallowInterceptTouchEvent(true)
+        }
+        
+        return super.dispatchTouchEvent(ev)
+    }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
+        android.util.Log.d("FreeScrollContainer", "onTouchEvent: ${event.action}, pointerCount: ${event.pointerCount}")
+        
         var handled = scaleGestureDetector.onTouchEvent(event)
         
         if (!scaleGestureDetector.isInProgress) {
@@ -45,6 +59,18 @@ class FreeScrollContainer @JvmOverloads constructor(
         }
         
         return handled || super.onTouchEvent(event)
+    }
+    
+    override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
+        // Always intercept multi-touch events for zoom
+        if (ev.pointerCount >= 2) {
+            android.util.Log.d("FreeScrollContainer", "Intercepting multi-touch")
+            parent?.requestDisallowInterceptTouchEvent(true)
+            return true
+        }
+        
+        // For single touch, let gesture detector decide
+        return gestureDetector.onTouchEvent(ev)
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
@@ -78,7 +104,11 @@ class FreeScrollContainer @JvmOverloads constructor(
     }
 
     private inner class GestureListener : GestureDetector.SimpleOnGestureListener() {
-        override fun onDown(e: MotionEvent): Boolean = true
+        override fun onDown(e: MotionEvent): Boolean {
+            // Request that the parent doesn't intercept our touch events
+            parent?.requestDisallowInterceptTouchEvent(true)
+            return true
+        }
 
         override fun onScroll(
             e1: MotionEvent?,
@@ -110,36 +140,74 @@ class FreeScrollContainer @JvmOverloads constructor(
     }
     
     private inner class ScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+        private var initialScrollX = 0f
+        private var initialScrollY = 0f
+        private var initialScale = 1f
+        private var pivotX = 0f
+        private var pivotY = 0f
+        
+        override fun onScaleBegin(detector: ScaleGestureDetector): Boolean {
+            android.util.Log.d("FreeScrollContainer", "Scale gesture began")
+            // Request that the parent doesn't intercept our touch events during scaling
+            parent?.requestDisallowInterceptTouchEvent(true)
+            
+            // Store initial state
+            initialScrollX = scrollX
+            initialScrollY = scrollY
+            initialScale = scaleFactor
+            pivotX = detector.focusX
+            pivotY = detector.focusY
+            
+            return true
+        }
+        
         override fun onScale(detector: ScaleGestureDetector): Boolean {
-            val previousScale = scaleFactor
-            scaleFactor *= detector.scaleFactor
+            android.util.Log.d("FreeScrollContainer", "Scale factor: ${detector.scaleFactor}")
+            
+            val newScale = initialScale * detector.scaleFactor
             
             // Constrain scale factor
-            scaleFactor = max(minScale, min(scaleFactor, maxScale))
+            val constrainedScale = max(minScale, min(newScale, maxScale))
             
-            // Adjust scroll position to zoom into the center of the gesture
-            val focusX = detector.focusX
-            val focusY = detector.focusY
+            // Only update if the scale actually changed
+            if (constrainedScale != scaleFactor) {
+                val scaleChange = constrainedScale / scaleFactor
+                
+                // Calculate new scroll position to keep content under pivot point stable
+                val dx = pivotX * (scaleChange - 1)
+                val dy = pivotY * (scaleChange - 1)
+                
+                scaleFactor = constrainedScale
+                scrollX += dx
+                scrollY += dy
+                
+                applyTransformation()
+            }
             
-            val scaleChange = scaleFactor / previousScale
-            
-            // Calculate the content position under the focus point before scaling
-            val contentFocusX = (focusX + scrollX) / previousScale
-            val contentFocusY = (focusY + scrollY) / previousScale
-            
-            // Calculate new scroll position to keep the same content under the focus point
-            scrollX = contentFocusX * scaleFactor - focusX
-            scrollY = contentFocusY * scaleFactor - focusY
-            
-            applyTransformation()
             return true
         }
     }
     
     // Public methods for programmatic control
     fun setScale(scale: Float) {
-        scaleFactor = max(minScale, min(scale, maxScale))
-        applyTransformation()
+        val newScale = max(minScale, min(scale, maxScale))
+        
+        if (newScale != scaleFactor) {
+            // Calculate zoom from center of view
+            val centerX = width / 2f
+            val centerY = height / 2f
+            val scaleChange = newScale / scaleFactor
+            
+            // Adjust scroll to keep center point stable
+            val dx = centerX * (scaleChange - 1)
+            val dy = centerY * (scaleChange - 1)
+            
+            scaleFactor = newScale
+            scrollX += dx
+            scrollY += dy
+            
+            applyTransformation()
+        }
     }
     
     fun getScale(): Float = scaleFactor
